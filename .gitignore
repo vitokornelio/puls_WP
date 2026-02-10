@@ -1,0 +1,26 @@
+# Секреты и доступы
+docs/credentials.md
+
+# Бэкапы
+*.backup.php
+*.backup.txt
+backups/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Claude Code
+.claude/
+
+# Temp files
+~$*
+
+# WordPress (если потребуется)
+wp-config.php
