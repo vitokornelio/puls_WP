@@ -1,13 +1,10 @@
 #!/bin/bash
 # Deploy VSUZI hub update + create new WooCommerce products
 #
-# Run locally: bash scripts/deploy-vsuzi.sh
+# NOTE: Prefer `git push production main` for standard deploys.
+# This script is for VSUZI-specific tasks (product creation, targeted upload).
 #
-# Steps:
-# 1. Upload images to server
-# 2. Upload hub PHP + functions.php
-# 3. Create 4 new WooCommerce products (Refinity, Reconnaissance PV, OmniWire, SyncVision)
-# 4. Clear nginx cache
+# Run locally: bash scripts/deploy-vsuzi.sh
 
 set -e
 
@@ -26,16 +23,18 @@ echo ""
 # ─── 1. Upload images ───
 echo "=== 1. Загрузка изображений ==="
 ssh $SERVER "mkdir -p $UPLOADS_DIR"
-scp "$LOCAL_DIR/vsuzi/images/"*.webp "$SERVER:$UPLOADS_DIR/"
-echo "  [+] 8 изображений загружены в $UPLOADS_DIR"
+scp "$LOCAL_DIR/uploads/vsuzi/"*.webp "$SERVER:$UPLOADS_DIR/"
+echo "  [+] Изображения загружены в $UPLOADS_DIR"
 echo ""
 
 # ─── 2. Upload PHP files ───
 echo "=== 2. Загрузка PHP файлов ==="
-scp "$LOCAL_DIR/page-vsuzi-hub.php" "$SERVER:$THEME_DIR/page-vsuzi-hub.php"
+scp "$LOCAL_DIR/theme/page-vsuzi-hub.php" "$SERVER:$THEME_DIR/page-vsuzi-hub.php"
 echo "  [+] page-vsuzi-hub.php"
-scp "$LOCAL_DIR/functions-new.php" "$SERVER:$THEME_DIR/functions.php"
+scp "$LOCAL_DIR/theme/functions.php" "$SERVER:$THEME_DIR/functions.php"
 echo "  [+] functions.php"
+scp "$LOCAL_DIR/theme/vsuzi-hub.css" "$SERVER:$THEME_DIR/vsuzi-hub.css"
+echo "  [+] vsuzi-hub.css"
 echo ""
 
 # ─── 3. Create WooCommerce products ───
@@ -54,5 +53,5 @@ echo "  [+] nginx cache очищен"
 
 echo ""
 echo "=== Готово! ==="
-echo "Проверьте: https://tdpuls.com/vsuzi/"
+echo "Проверьте: https://tdpuls.com/product-category/interventsionnaya-rentgenologiya/vsuzi/"
 echo ""

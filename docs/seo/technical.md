@@ -4,7 +4,7 @@
 
 ## robots.txt
 
-**Управление:** `$tdp_seo_config` в `functions-new.php:424-457`
+**Управление:** `$tdp_seo_config` в `theme/functions.php:424-457`
 
 ### Blocked params (Disallow + noindex)
 `add_to_wishlist`, `_wpnonce`, `add-to-cart`, `design`, `s`, `lang`
@@ -39,10 +39,10 @@
 
 ## Schema.org
 
-### Organization (functions-new.php, `rank_math/json_ld`)
+### Organization (theme/functions.php, `rank_math/json_ld`)
 - name, logo, telephone, email, address (Ростов-на-Дону), contactPoint
 
-### Product (functions-new.php, `rank_math/json_ld`)
+### Product (theme/functions.php, `rank_math/json_ld`)
 - brand (из `pa_proizvoditel`), sku (slug)
 - Цена есть → `AggregateOffer` + `lowPrice`
 - Цена пуста → `Offer` + `availability: InStock`
@@ -61,16 +61,16 @@
 
 | Старый URL | Новый URL | Тип | Где |
 |---|---|---|---|
-| `/vsuzi/` | `/product-category/.../vsuzi/` | 301 | `functions-new.php` |
+| `/vsuzi/` | `/product-category/.../vsuzi/` | 301 | `theme/functions.php` |
 | `/tag/*` | `/info/` | 301 | nginx |
 | `/privacy-policy/` | policy.pdf | 301 | nginx |
-| 4 старых товара ВСУЗИ | новые товары | 301 | `functions-new.php` |
+| 4 старых товара ВСУЗИ | новые товары | 301 | `theme/functions.php` |
 
 ---
 
 ## noindex
 
-**Управление:** `rank_math/frontend/robots` фильтр в `functions-new.php`
+**Управление:** `rank_math/frontend/robots` фильтр в `theme/functions.php`
 
 - Параметры из `blocked_params` → noindex
 - `?filter_*` → noindex
@@ -87,7 +87,7 @@
 | OPcache | 256 МБ | revalidate 60s | `systemctl reload php8.3-fpm` |
 | Sitemap (Rank Math) | `wp-content/uploads/rank-math/*.xml` | до invalidation | удалить файлы + flush |
 
-**Автоочистка FastCGI:** хуки `save_post`, `edited_term` в `functions-new.php`
+**Автоочистка FastCGI:** хуки `save_post`, `edited_term` в `theme/functions.php`
 
 ---
 

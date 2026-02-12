@@ -17,7 +17,7 @@
 
 **Impact:** КРИТИЧЕСКИЙ — страница невидима для поисковиков
 
-В `functions-new.php:457` стоит:
+В `theme/functions.php:457` стоит:
 ```php
 'noindex_pages' => ['vsuzi'],
 ```
@@ -52,7 +52,7 @@
 
 Отсутствуют `og:title`, `og:description`, `og:image`. При отправке ссылки в WhatsApp/Telegram не будет красивого превью.
 
-**Исправление:** Добавить OG-теги через Rank Math или фильтр в `functions-new.php`. Нужен `og:image` — 1200x630px.
+**Исправление:** Добавить OG-теги через Rank Math или фильтр в `theme/functions.php`. Нужен `og:image` — 1200x630px.
 
 ### 5. Нет BreadcrumbList schema
 

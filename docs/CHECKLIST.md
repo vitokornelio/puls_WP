@@ -46,17 +46,18 @@ curl -s "https://tdpuls.com/" | grep -A 5 'application/ld+json'
 
 ---
 
-## Деплой файлов
+## Деплой
 
-### Загрузить файл в тему
+### Автоматический (через git)
 ```bash
-scp LOCAL_FILE root@85.198.96.28:/var/www/tdpuls.com/public/wp-content/themes/flatsome/REMOTE_NAME
-ssh root@85.198.96.28 "chown www-data:www-data /var/www/tdpuls.com/public/wp-content/themes/flatsome/REMOTE_NAME"
+git push production main
+# Post-receive hook: rsync theme/ → flatsome, uploads/ → uploads, webroot/ → public
+# Автоматически: chown, очистка FastCGI + OPcache + Redis
 ```
 
-### Стандартный деплой functions.php
+### Ручной (один файл)
 ```bash
-scp functions-new.php root@85.198.96.28:/var/www/tdpuls.com/public/wp-content/themes/flatsome/functions.php
+scp theme/functions.php root@85.198.96.28:/var/www/tdpuls.com/public/wp-content/themes/flatsome/functions.php
 ssh root@85.198.96.28 "chown www-data:www-data /var/www/tdpuls.com/public/wp-content/themes/flatsome/functions.php"
 ```
 
@@ -197,4 +198,4 @@ ORDER BY (data_length + index_length) DESC LIMIT 10;
 
 ---
 
-*Обновлено: 2026-02-09*
+*Обновлено: 2026-02-12*

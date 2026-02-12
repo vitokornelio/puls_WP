@@ -31,7 +31,7 @@
 - **[schema]** Organization: logo, telephone, email, address, contactPoint
 - **[schema]** Product: brand (из `pa_proizvoditel`), sku (slug), offers (AggregateOffer/Offer)
 - **[schema]** BreadcrumbList для всех товаров: Главная > Категория > Подкатегория > Товар
-- **Файл:** `functions-new.php`, фильтр `rank_math/json_ld` (приоритет 20)
+- **Файл:** `theme/functions.php`, фильтр `rank_math/json_ld` (приоритет 20)
 
 ### Аудит и мониторинг
 - **[audit]** Полный SEO-аудит: `docs/seo-audit-2026-02-07.md`

@@ -44,7 +44,7 @@
 
 Шаблон: `{Модель} — {тип оборудования} | Купить по выгодной цене` (каскад: если >70 симв. → `| Купить в ТД Пульс` → `| ТД Пульс`)
 
-**Реализация:** фильтр `rank_math/frontend/title` в `functions-new.php` с:
+**Реализация:** фильтр `rank_math/frontend/title` в `theme/functions.php` с:
 - Smart title case для моделей (сохранение аббревиатур GE, CT, MR, DRF и т.д.)
 - Замена GENERAL ELECTRIC → GE
 - Маппинг типов: УЛЬТРАЗВУКОВАЯ СИСТЕМА → УЗИ аппарат, РЕНТГЕНОВСКАЯ СИСТЕМА → рентген-аппарат, С-ДУГА → С-дуга и т.д.
@@ -56,7 +56,7 @@
 **Было:** шорткоды Flatsome `[row_inner_1] [col_inner_1] [yith_wcwl_add_to_wishlist]...`
 **Стало:** чистый текст из short_description или автогенерация `{Модель} — {Категория}. Поставка по РФ, монтаж и сервисное обслуживание. ГК «Пульс».`
 
-**Реализация:** функция `tdp_clean_product_description()` + фильтр `rank_math/frontend/description` в `functions-new.php`.
+**Реализация:** функция `tdp_clean_product_description()` + фильтр `rank_math/frontend/description` в `theme/functions.php`.
 
 ### 2.3 Добавить Schema.org Product микроразметку
 
@@ -82,7 +82,7 @@
 
 ### 2.4 Schema.org Organization + LocalBusiness
 
-Частично уже есть в `header-new.php`. Дополнить:
+Частично уже есть в `theme/header.php`. Дополнить:
 - `sameAs` — ссылки на соцсети, Яндекс.Справочник
 - `areaServed` — Россия
 - `hasOfferCatalog` — каталог оборудования
@@ -161,7 +161,7 @@
 
 Все 28 активных категорий получили SEO-описания (description) через WP REST API.
 Фильтр `rank_math/frontend/description` + OG description обновлены — берут description категории и обрезают до 160 символов.
-Функция `tdp_get_category_description()` в `functions-new.php`.
+Функция `tdp_get_category_description()` в `theme/functions.php`.
 
 ---
 

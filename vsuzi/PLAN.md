@@ -93,14 +93,15 @@
 ### Файлы
 | Файл | Описание |
 |------|----------|
-| `page-vsuzi-hub.php` | Hub-лендинг, шаблон WP-страницы |
-| `functions-new.php` | Хук template_include + SEO мета |
+| `theme/page-vsuzi-hub.php` | Hub-лендинг, шаблон WP-страницы |
+| `theme/functions.php` | Хук template_include + SEO мета |
+| `theme/vsuzi-hub.css` | CSS для хаба |
+| `uploads/vsuzi/*.webp` | Изображения продуктов |
 
 ### Деплой
-1. Загрузить `page-vsuzi-hub.php` на сервер
-2. Загрузить обновлённый `functions-new.php`
-3. Создать WP-страницу со slug `vsuzi` через REST API
-4. Проверить https://tdpuls.com/vsuzi/
+```bash
+git push production main    # автодеплой через post-receive hook
+```
 
 ## Ссылки
 - [Philips IVUS (rus)](https://www.philips.ru/healthcare/education-resources/technologies/igt/intravascular-ultrasound-ivus)
