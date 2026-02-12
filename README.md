@@ -25,9 +25,17 @@ tdpuls-wordpress/
 ├── header-new.php               # → header.php на сервере (Schema.org)
 ├── bitrix24-lead-form.php       # Интеграция формы с Битрикс24 CRM + кастомный попап
 ├── single-product-redesign.php  # Альтернативный шаблон товара (?design=new)
-├── page-vsuzi-hub.php           # Страница-хаб ВСУЗИ
+├── page-vsuzi-hub.php           # Страница-хаб ВСУЗИ (8 продуктов)
 ├── vsuzi/
-│   └── PLAN.md                  # План страницы ВСУЗИ
+│   ├── PLAN.md                  # Контент-стратегия ВСУЗИ
+│   └── images/                  # Изображения продуктов (WebP, 800px)
+├── scripts/
+│   ├── deploy-vsuzi.sh          # Деплой ВСУЗИ: файлы + товары + кеш
+│   ├── import-vsuzi-products.sh # Создание 4 WC-товаров на сервере
+│   └── import-mindray-uzi.sh    # Импорт Mindray УЗИ
+├── tests/
+│   └── tdpuls.spec.ts              # E2E тесты Playwright (главная, каталог, товар, ВСУЗИ, модалка)
+├── playwright.config.ts            # Конфиг Playwright (chromium + mobile)
 ├── docs/
 │   ├── credentials.md           # Доступы (SSH, API, БД) — НЕ в git!
 │   ├── commands.md              # Команды обслуживания (устаревшее, для mchost)
@@ -97,6 +105,26 @@ ssh root@85.198.96.28 "rm -rf /var/cache/nginx/fastcgi/* && systemctl reload ngi
 
 ---
 
+## E2E тесты (Playwright)
+
+```bash
+npx playwright test                    # все тесты, все браузеры
+npx playwright test --project=chromium # только Chromium
+npx playwright test --project=mobile   # только мобильный (iPhone 14)
+npx playwright test --ui               # интерактивный UI-режим
+npx playwright test --headed           # с видимым браузером
+npx playwright show-report             # HTML-отчёт
+```
+
+Тесты проверяют:
+- Главная страница (заголовок, навигация, «Специальное предложение»)
+- Каталог товаров (категория КТ, карточки)
+- Страница товара (Philips Access CT, кнопка «Получить КП»)
+- ВСУЗИ хаб
+- Модалка Битрикс24
+
+---
+
 ## Доступы
 
 Все доступы: `docs/credentials.md`
@@ -106,4 +134,4 @@ ssh root@85.198.96.28 "rm -rf /var/cache/nginx/fastcgi/* && systemctl reload ngi
 
 ---
 
-*Обновлено: 2026-02-09*
+*Обновлено: 2026-02-11*
