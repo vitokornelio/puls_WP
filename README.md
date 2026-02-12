@@ -21,31 +21,71 @@
 
 ```
 tdpuls-wordpress/
-├── functions-new.php            # → functions.php на сервере (SEO, оптимизации, Bitrix24)
-├── header-new.php               # → header.php на сервере (Schema.org)
-├── bitrix24-lead-form.php       # Интеграция формы с Битрикс24 CRM + кастомный попап
-├── single-product-redesign.php  # Альтернативный шаблон товара (?design=new)
-├── page-vsuzi-hub.php           # Страница-хаб ВСУЗИ (8 продуктов)
-├── vsuzi/
-│   ├── PLAN.md                  # Контент-стратегия ВСУЗИ
-│   └── images/                  # Изображения продуктов (WebP, 800px)
-├── scripts/
-│   ├── deploy-vsuzi.sh          # Деплой ВСУЗИ: файлы + товары + кеш
-│   ├── import-vsuzi-products.sh # Создание 4 WC-товаров на сервере
-│   └── import-mindray-uzi.sh    # Импорт Mindray УЗИ
-├── tests/
-│   └── tdpuls.spec.ts              # E2E тесты Playwright (главная, каталог, товар, ВСУЗИ, модалка)
-├── playwright.config.ts            # Конфиг Playwright (chromium + mobile)
-├── docs/
-│   ├── credentials.md           # Доступы (SSH, API, БД) — НЕ в git!
-│   ├── commands.md              # Команды обслуживания (устаревшее, для mchost)
-│   ├── CHECKLIST.md             # Чеклист для VPS
-│   ├── seo-audit-2026-02-07.md  # SEO-аудит (текущий)
-│   ├── seo-improvement-plan.md  # План улучшения SEO
-│   ├── optimization-results.md  # Результаты оптимизации (архив, mchost)
-│   └── plans/                   # Архивные планы разработки
-├── AD_context.md                # Контекст для рекламных кампаний
-└── .gitignore
+├── theme/                              # → /wp-content/themes/flatsome/
+│   ├── functions.php                   # SEO, оптимизации, Bitrix24, кеш
+│   ├── header.php                      # Schema.org
+│   ├── bitrix24-lead-form.php          # Интеграция формы с Битрикс24 CRM
+│   ├── single-product-redesign.php     # Альтернативный шаблон товара (?design=new)
+│   ├── page-vsuzi-hub.php              # Страница-хаб ВСУЗИ
+│   └── vsuzi-hub.css                   # CSS для ВСУЗИ-хаба
+│
+├── uploads/                            # → /wp-content/uploads/
+│   └── vsuzi/                          # Изображения продуктов (WebP, 800px)
+│
+├── webroot/                            # → /var/www/tdpuls.com/public/
+│   └── yandex_*.html                   # Yandex Webmaster verification
+│
+├── scripts/                            # НЕ деплоится — утилитные скрипты
+│   ├── deploy-vsuzi.sh
+│   ├── import-vsuzi-products.sh
+│   ├── import-mindray-uzi.sh
+│   ├── rename-*.php
+│   └── webp-*.php
+│
+├── tests/                              # НЕ деплоится — Playwright E2E
+│   └── tdpuls.spec.ts
+├── docs/                               # НЕ деплоится — документация
+├── vsuzi/                              # НЕ деплоится — VSUZI проектные docs
+│
+├── .gitignore
+├── CLAUDE.md
+├── README.md
+├── package.json
+└── playwright.config.ts
+```
+
+---
+
+## Деплой
+
+### Автоматический (через git)
+
+```bash
+git push production main
+```
+
+Post-receive hook автоматически:
+1. Rsync `theme/` → `/wp-content/themes/flatsome/`
+2. Rsync `uploads/` → `/wp-content/uploads/`
+3. Rsync `webroot/` → webroot сервера
+4. Очищает FastCGI кеш + OPcache
+
+### Ручной (один файл)
+
+```bash
+scp theme/functions.php root@85.198.96.28:/var/www/tdpuls.com/public/wp-content/themes/flatsome/functions.php
+```
+
+### WP-CLI
+
+```bash
+ssh root@85.198.96.28 "cd /var/www/tdpuls.com/public && wp plugin list --allow-root"
+```
+
+### Очистка кеша
+
+```bash
+ssh root@85.198.96.28 "rm -rf /var/cache/nginx/fastcgi/* && systemctl reload nginx"
 ```
 
 ---
@@ -88,23 +128,6 @@ tdpuls-wordpress/
 
 ---
 
-## Деплой
-
-```bash
-# Загрузить файл на сервер
-scp functions-new.php root@85.198.96.28:/var/www/tdpuls.com/public/wp-content/themes/flatsome/functions.php
-
-# WP-CLI
-ssh root@85.198.96.28 "cd /var/www/tdpuls.com/public && wp plugin list --allow-root"
-
-# Очистка кеша
-ssh root@85.198.96.28 "rm -rf /var/cache/nginx/fastcgi/* && systemctl reload nginx"
-```
-
-Подробности: см. memory/deployment.md
-
----
-
 ## E2E тесты (Playwright)
 
 ```bash
@@ -134,4 +157,4 @@ npx playwright show-report             # HTML-отчёт
 
 ---
 
-*Обновлено: 2026-02-11*
+*Обновлено: 2026-02-12*
