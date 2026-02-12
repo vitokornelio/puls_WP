@@ -37,7 +37,7 @@ add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
 function woo_remove_product_tabs( $tabs ){
 unset( $tabs['description'] ); // Remove the description tab
 unset( $tabs['reviews'] ); // Remove the reviews tab
-unset( $tabs['additional_information'] ); // Remove the additional information tab
+// unset( $tabs['additional_information'] ); // Remove the additional information tab
 return $tabs;
 }
 
@@ -165,24 +165,11 @@ add_filter('template_include', function($template) {
     return $template;
 }, 999);
 
-/**
- * Hub-лендинг ВСУЗИ оборудование — /vsuzi/
- */
-add_filter('template_include', function($template) {
-    if (is_page('vsuzi')) {
-        $custom = get_template_directory() . '/page-vsuzi-hub.php';
-        if (file_exists($custom)) {
-            return $custom;
-        }
-    }
-    return $template;
-}, 999);
-
 // SEO Title — ВСУЗИ страница + товары
 add_filter('rank_math/frontend/title', function($title) {
     // ВСУЗИ hub page
-    if (is_page('vsuzi')) {
-        return 'ВСУЗИ оборудование Philips Volcano — катетеры Eagle Eye, IntraSight | ТД «Пульс»';
+    if (is_tax('product_cat', 'vsuzi')) {
+        return 'ВСУЗИ оборудование Philips Volcano — катетеры, проводники, платформы | ТД «Пульс»';
     }
 
     // Product pages — SEO-оптимизированный title
@@ -415,8 +402,8 @@ function tdp_get_leaf_category_name($product_id) {
 }
 
 add_filter('rank_math/frontend/description', function($desc) {
-    if (is_page('vsuzi')) {
-        return 'Каталог ВСУЗИ оборудования Philips Volcano: катетеры Eagle Eye Platinum, платформы IntraSight. Внутрисосудистый ультразвук для интервенционной кардиологии. Доставка по РФ.';
+    if (is_tax('product_cat', 'vsuzi')) {
+        return 'Полная линейка ВСУЗИ оборудования Philips Volcano: катетеры Eagle Eye Platinum и Refinity, проводник OmniWire FFR/iFR, платформы IntraSight, ПО SyncVision. Доставка по РФ.';
     }
     return $desc;
 });
@@ -454,7 +441,7 @@ $tdp_seo_config = [
     ],
 
     // Страницы с noindex (slug) — не индексировать
-    'noindex_pages' => ['vsuzi'],
+    'noindex_pages' => [],
 ];
 
 // --- robots.txt: Disallow + Clean-param ---
@@ -647,6 +634,9 @@ add_filter('rank_math/opengraph/facebook/og_description', function($description)
     if (is_front_page()) {
         return 'Поставки медицинского оборудования от ведущих производителей: Philips, GE, Siemens. УЗИ, МРТ, КТ, рентген. Монтаж и сервисное обслуживание по всей России.';
     }
+    if (is_tax('product_cat', 'vsuzi')) {
+        return 'Полная линейка ВСУЗИ оборудования Philips Volcano: катетеры Eagle Eye Platinum, Refinity, проводник OmniWire, платформы IntraSight и Core Mobile. Поставка по РФ.';
+    }
 
     $product_desc = tdp_clean_product_description();
     if ($product_desc) {
@@ -664,6 +654,9 @@ add_filter('rank_math/opengraph/facebook/og_description', function($description)
 add_filter('rank_math/opengraph/twitter/og_description', function($description) {
     if (is_front_page()) {
         return 'Поставки медицинского оборудования от ведущих производителей: Philips, GE, Siemens. УЗИ, МРТ, КТ, рентген. Монтаж и сервисное обслуживание по всей России.';
+    }
+    if (is_tax('product_cat', 'vsuzi')) {
+        return 'Полная линейка ВСУЗИ оборудования Philips Volcano: катетеры Eagle Eye Platinum, Refinity, проводник OmniWire, платформы IntraSight и Core Mobile. Поставка по РФ.';
     }
 
     $product_desc = tdp_clean_product_description();
@@ -684,6 +677,9 @@ add_filter('rank_math/opengraph/facebook/og_title', function($title) {
     if (is_front_page()) {
         return 'Медицинское оборудование Philips, GE, Siemens — ТД «Пульс»';
     }
+    if (is_tax('product_cat', 'vsuzi')) {
+        return 'ВСУЗИ оборудование Philips Volcano — катетеры, проводники, платформы';
+    }
     return $title;
 });
 
@@ -691,7 +687,65 @@ add_filter('rank_math/opengraph/twitter/og_title', function($title) {
     if (is_front_page()) {
         return 'Медицинское оборудование Philips, GE, Siemens — ТД «Пульс»';
     }
+    if (is_tax('product_cat', 'vsuzi')) {
+        return 'ВСУЗИ оборудование Philips Volcano — катетеры, проводники, платформы';
+    }
     return $title;
+});
+
+// OG Image — ВСУЗИ hub
+add_filter('rank_math/opengraph/facebook/image', function($image) {
+    if (is_tax('product_cat', 'vsuzi')) {
+        return home_url('/wp-content/uploads/vsuzi/og-vsuzi-hub.jpg');
+    }
+    return $image;
+});
+
+// ВСУЗИ: редиректы старых URL
+add_action('template_redirect', function() {
+    $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+
+    // Старая хаб-страница → категория
+    if ($uri === 'vsuzi') {
+        wp_redirect(home_url('/product-category/interventsionnaya-rentgenologiya/vsuzi/'), 301);
+        exit;
+    }
+
+    // Дедупликация товаров: старые slug → новые
+    $product_redirects = [
+        'refinity-rotatsionnyj-kateter-dlya-provedeniya-vsuzi' => '/shop/interventsionnaya-rentgenologiya/vsuzi/refinity-rotatsionnyj-kateter-dlya-vsuzi/',
+        'syncvision-sistema-dlya-vypolneniya-vysokotochnoj-terapii' => '/shop/interventsionnaya-rentgenologiya/vsuzi/syncvision-sistema-tochnoj-navigatsii/',
+        'verrata-plus-provodnik-s-datchikom-davleniya' => '/shop/interventsionnaya-rentgenologiya/vsuzi/omniwire-provodnik-s-datchikom-davleniya/',
+        'visions-pv-0-018-dyujma-tsifrovoj-kateter-dlya-vsuzi' => '/shop/interventsionnaya-rentgenologiya/vsuzi/reconnaissance-pv-018-otw-tsifrovoj-kateter-dlya-vsuzi/',
+    ];
+    $slug = basename($uri);
+    if (isset($product_redirects[$slug]) && is_404()) {
+        wp_redirect(home_url($product_redirects[$slug]), 301);
+        exit;
+    }
+});
+
+// ВСУЗИ: кастомный шаблон для категории
+add_filter('template_include', function($template) {
+    if (is_tax('product_cat', 'vsuzi')) {
+        $custom = get_template_directory() . '/page-vsuzi-hub.php';
+        if (file_exists($custom)) {
+            return $custom;
+        }
+    }
+    return $template;
+}, 999);
+
+// ВСУЗИ hub CSS
+add_action('wp_enqueue_scripts', function() {
+    if (is_tax('product_cat', 'vsuzi')) {
+        wp_enqueue_style(
+            'vsuzi-hub',
+            get_template_directory_uri() . '/vsuzi-hub.css',
+            [],
+            '1.0.0'
+        );
+    }
 });
 
 /**
@@ -763,9 +817,10 @@ add_action('wp_head', function() {
     echo '<style>html{scroll-behavior:smooth}</style>';
     if (is_front_page()) {
         echo '<style>
-.slider-wrapper{min-height:600px}
-@media(max-width:849px){.slider-wrapper{min-height:400px}}
-@media(max-width:549px){.slider-wrapper{min-height:300px}}
+.section-banner .slider-wrapper{min-height:440px}
+.section-banner-tablet .slider-wrapper{min-height:500px}
+@media(max-width:849px){.section-banner-tablet .slider-wrapper{min-height:400px}}
+@media(max-width:549px){.section-banner-tablet .slider-wrapper{min-height:300px}}
 .product-small .box-image{aspect-ratio:1/1;overflow:hidden}
 .product-small .box-image img{width:300px;height:300px}
 .blog-anons-slider{min-height:320px}
@@ -1074,32 +1129,28 @@ if (!function_exists('tdp_get_badge_price_value')) {
     }
 }
 
-// 2. Рендерим бейдж цены прямо в карточке через loop-хук (без JS-переноса).
-add_action('woocommerce_before_shop_loop_item_title', function () {
-    global $product;
-
+// 2. Рендерим бейдж цены в штатный badge-container Flatsome (без JS-переноса).
+add_filter('flatsome_product_labels', function ($text, $post, $product, $badge_style) {
     $price = tdp_get_badge_price_value($product);
-    if ($price <= 0) return;
+    if ($price <= 0) return $text;
 
-    echo '<span class="tdp-price-badge">от ' . esc_html(tdp_format_compact_price($price)) . ' ₽</span>';
-}, 12);
+    $text .= '<span class="tdp-price-badge">от ' . esc_html(tdp_format_compact_price($price)) . ' ₽</span>';
+    return $text;
+}, 20, 4);
 
 // 3. Стили бейджа цены.
 add_action('wp_head', function () {
     if (is_admin()) return;
     echo '<style>
-    .product-small .box-image{position:relative}
-    .product-small .box-image .tdp-price-badge{
+    .badge-container .tdp-price-badge{
         position:absolute;
-        top:45px;
+        top:46px;
         left:-10px;
         z-index:3;
         display:inline-flex;
         align-items:center;
         justify-content:center;
-        width:auto;
         min-height:30px;
-        max-width:calc(100% - 12px);
         border-radius:4px;
         padding:4px 12px;
         background:#00a4e4;
@@ -1108,6 +1159,11 @@ add_action('wp_head', function () {
         font-weight:500;
         line-height:1.2;
         white-space:nowrap;
+        pointer-events:none;
+    }
+    .single-product .product .product-images{position:relative}
+    .single-product .product .product-images .tdp-price-badge{
+        top:45px;
     }
     </style>';
 }, 11);

@@ -138,10 +138,10 @@ function b24_render_modal() {
     .b24-close:hover{background:rgba(255,255,255,.2);opacity:1}
     .b24-form{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
     .b24-form-header{background:linear-gradient(135deg,#00a4e4 0%,#0080c0 100%);padding:28px 32px 24px;color:#fff}
-    .b24-form-header h3{margin:0 0 6px;font-size:20px;font-weight:700;line-height:1.3}
+    .b24-form-header h3{margin:0 0 6px;font-size:20px;font-weight:700;line-height:1.3;padding-right:40px}
     .b24-form-header p{margin:0;font-size:14px;opacity:.85;line-height:1.4}
-    .b24-form-body{padding:24px 32px 28px;background:#fff}
-    .b24-form .b24-field{margin-bottom:16px}
+    .b24-form-body{padding:20px 28px 24px;background:#fff}
+    .b24-form .b24-field{margin-bottom:12px}
     .b24-form label{display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:6px}
     .b24-form label .b24-req{color:#ef4444}
     .b24-form input[type="text"],.b24-form input[type="tel"],.b24-form input[type="email"]{width:100%;padding:12px 14px;border:1.5px solid #d1d5db;border-radius:10px;font-size:15px;font-family:inherit;box-sizing:border-box;transition:all .2s;background:#f9fafb;color:#1f2937}

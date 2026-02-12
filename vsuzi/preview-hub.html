@@ -3,464 +3,590 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ВСУЗИ оборудование Philips Volcano — ТД «Пульс» | ПРЕВЬЮ</title>
+    <title>ВСУЗИ оборудование Philips Volcano — ТД «Пульс»</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Reset */
+        /* ===== RESET ===== */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; color: #1a1a2e; line-height: 1.6; }
-        a { text-decoration: none; color: inherit; }
-
-        /* Fake header to simulate site */
-        .fake-header {
+        body {
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #333;
+            line-height: 1.6;
             background: #fff;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 14px 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* ===== FAKE HEADER (имитация шапки сайта) ===== */
+        .site-header {
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 0 40px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .fake-header .logo { font-size: 20px; font-weight: 800; color: #00a4e4; }
-        .fake-header nav { display: flex; gap: 24px; font-size: 14px; color: #64748b; }
+        .site-header .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #00a4e4;
+            letter-spacing: -0.5px;
+        }
+        .site-header .logo span { color: #333; }
+        .site-header nav {
+            display: flex;
+            gap: 32px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .site-header nav a:hover { color: #00a4e4; }
+        .site-header .header-phone {
+            font-size: 15px;
+            font-weight: 700;
+            color: #333;
+        }
 
         /* ================================================================
-           VSUZI HUB PAGE — tdpuls.com
+           VSUZI HUB — в стиле tdpuls.com (Flatsome / Manrope / #00a4e4)
            ================================================================ */
 
-        :root {
-            --tdp-blue: #00a4e4;
-            --tdp-blue-hover: #0090cc;
-            --tdp-blue-light: #e0f2fe;
-            --tdp-blue-bg: #f0f7ff;
-            --tdp-dark: #1a1a2e;
-            --tdp-gray: #64748b;
-            --tdp-gray-light: #94a3b8;
-            --tdp-green: #059669;
-            --tdp-green-light: #ecfdf5;
-            --tdp-bg: #f8fafc;
-            --tdp-white: #ffffff;
-            --tdp-radius: 12px;
-            --tdp-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-            --tdp-shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+        .vsuzi-hub {
+            font-family: 'Manrope', sans-serif;
+            color: #333;
         }
 
-        .tdp-vsuzi { color: var(--tdp-dark); line-height: 1.6; }
-        .tdp-vsuzi a { text-decoration: none; color: inherit; }
-        .tdp-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== BREADCRUMBS ===== */
+        .breadcrumbs {
+            padding: 14px 0;
+            font-size: 13px;
+            color: #999;
+            background: #f7f7f7;
+            border-bottom: 1px solid #eee;
+        }
+        .breadcrumbs a { color: #777; transition: color 0.2s; }
+        .breadcrumbs a:hover { color: #00a4e4; }
+        .breadcrumbs .sep { margin: 0 8px; color: #ccc; }
 
         /* ===== HERO ===== */
-        .tdp-vsuzi-hero {
-            background: linear-gradient(135deg, #0a1628 0%, #1a2744 50%, #0d2137 100%);
-            padding: 70px 0 80px;
+        .vsuzi-hero {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 50%, #f5f9ff 100%);
+            padding: 60px 0 70px;
             position: relative;
             overflow: hidden;
         }
-        .tdp-vsuzi-hero::before {
+        .vsuzi-hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0,164,228,0.15) 0%, transparent 70%);
+            top: -100px;
+            right: -50px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0,164,228,0.08) 0%, transparent 70%);
             border-radius: 50%;
         }
-        .tdp-vsuzi-hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -5%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(5,150,105,0.1) 0%, transparent 70%);
-            border-radius: 50%;
+        .vsuzi-hero-inner {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+            z-index: 1;
         }
-        .tdp-hero-content { position: relative; z-index: 1; max-width: 800px; }
-        .tdp-hero-badge {
+        .vsuzi-hero-text { flex: 1; }
+        .vsuzi-hero-visual {
+            flex: 0 0 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-partner {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(0,164,228,0.15);
-            border: 1px solid rgba(0,164,228,0.3);
-            color: #7dd3fc;
+            background: rgba(0,164,228,0.1);
+            border: 1px solid rgba(0,164,228,0.2);
+            color: #00a4e4;
             padding: 6px 16px;
             border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-            margin-bottom: 24px;
-            letter-spacing: 0.3px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .tdp-hero-badge svg { width: 16px; height: 16px; }
-        .tdp-hero-h1 {
-            font-size: 44px;
+        .hero-partner svg { width: 14px; height: 14px; }
+
+        .vsuzi-hero h1 {
+            font-size: 42px;
             font-weight: 800;
-            color: #ffffff;
+            color: #1a1a1a;
             line-height: 1.15;
-            margin: 0 0 20px;
+            margin-bottom: 18px;
             letter-spacing: -0.5px;
         }
-        .tdp-hero-h1 span { color: var(--tdp-blue); }
-        .tdp-hero-desc {
-            font-size: 18px;
-            color: #94a3b8;
+        .vsuzi-hero h1 span { color: #00a4e4; }
+
+        .vsuzi-hero .hero-desc {
+            font-size: 17px;
+            color: #666;
             line-height: 1.7;
-            margin-bottom: 36px;
-            max-width: 640px;
+            margin-bottom: 32px;
+            max-width: 560px;
         }
-        .tdp-hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-        .tdp-btn {
+
+        .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+        .btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             padding: 14px 28px;
             border-radius: 10px;
             font-size: 15px;
             font-weight: 600;
+            font-family: 'Manrope', sans-serif;
             cursor: pointer;
-            transition: all 0.25s;
+            transition: all 0.2s;
             border: none;
-            letter-spacing: 0.2px;
         }
-        .tdp-btn-primary { background: var(--tdp-blue); color: #fff; }
-        .tdp-btn-primary:hover {
-            background: var(--tdp-blue-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,164,228,0.35);
+        .btn svg { width: 18px; height: 18px; }
+        .btn-primary {
+            background: #00a4e4;
             color: #fff;
         }
-        .tdp-btn-outline {
-            background: transparent;
-            color: #cbd5e1;
-            border: 1.5px solid rgba(148,163,184,0.3);
+        .btn-primary:hover {
+            background: #0090cc;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,164,228,0.3);
+            color: #fff;
         }
-        .tdp-btn-outline:hover {
-            border-color: var(--tdp-blue);
-            color: var(--tdp-blue);
-            background: rgba(0,164,228,0.08);
+        .btn-dark {
+            background: #1a1a1a;
+            color: #fff;
         }
-        .tdp-btn svg { width: 18px; height: 18px; }
-        .tdp-hero-stats {
+        .btn-dark:hover {
+            background: #333;
+            color: #fff;
+        }
+        .btn-outline {
+            background: #fff;
+            color: #333;
+            border: 1.5px solid #ddd;
+        }
+        .btn-outline:hover {
+            border-color: #00a4e4;
+            color: #00a4e4;
+        }
+
+        /* Hero stats */
+        .hero-stats {
             display: flex;
             gap: 40px;
-            margin-top: 50px;
-            padding-top: 36px;
-            border-top: 1px solid rgba(148,163,184,0.15);
+            margin-top: 40px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(0,0,0,0.08);
         }
-        .tdp-hero-stat-value {
-            font-size: 32px;
+        .hero-stat-value {
+            font-size: 28px;
             font-weight: 800;
-            color: #fff;
+            color: #1a1a1a;
             line-height: 1;
         }
-        .tdp-hero-stat-value span { color: var(--tdp-blue); }
-        .tdp-hero-stat-label {
-            font-size: 13px;
-            color: #64748b;
+        .hero-stat-value span { color: #00a4e4; }
+        .hero-stat-label {
+            font-size: 12px;
+            color: #999;
             margin-top: 6px;
             line-height: 1.4;
         }
 
-        /* ===== SECTION COMMON ===== */
-        .tdp-section { padding: 70px 0; }
-        .tdp-section-alt { background: var(--tdp-bg); }
-        .tdp-section-title {
-            font-size: 32px;
+        /* Hero visual — IVUS illustration */
+        .hero-ivus-visual {
+            width: 360px;
+            height: 360px;
+            position: relative;
+        }
+        .hero-ivus-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 3px solid rgba(0,164,228,0.15);
+        }
+        .hero-ivus-ring:nth-child(2) {
+            inset: 30px;
+            border-color: rgba(0,164,228,0.2);
+        }
+        .hero-ivus-ring:nth-child(3) {
+            inset: 60px;
+            border-color: rgba(0,164,228,0.3);
+            animation: pulse-ring 3s ease-in-out infinite;
+        }
+        .hero-ivus-ring:nth-child(4) {
+            inset: 90px;
+            border-color: rgba(0,164,228,0.4);
+        }
+        .hero-ivus-center {
+            position: absolute;
+            inset: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00a4e4, #0077b6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
             font-weight: 700;
-            color: var(--tdp-dark);
-            margin: 0 0 12px;
+            text-align: center;
+            line-height: 1.3;
+            box-shadow: 0 8px 30px rgba(0,164,228,0.3);
+        }
+        @keyframes pulse-ring {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.03); opacity: 0.7; }
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 70px 0;
+        }
+        .section-gray {
+            background: #f7f7f7;
+        }
+        .section-title {
+            font-size: 30px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin: 0 0 10px;
             line-height: 1.2;
         }
-        .tdp-section-subtitle {
-            font-size: 16px;
-            color: var(--tdp-gray);
+        .section-subtitle {
+            font-size: 15px;
+            color: #777;
             margin-bottom: 40px;
             max-width: 600px;
         }
-        .tdp-section-center { text-align: center; }
-        .tdp-section-center .tdp-section-subtitle {
+        .section-center {
+            text-align: center;
+        }
+        .section-center .section-subtitle {
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* ===== WHY IVUS ===== */
-        .tdp-benefits-grid {
+        /* ===== BENEFITS GRID ===== */
+        .benefits-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 20px;
         }
-        .tdp-benefit-card {
-            background: var(--tdp-white);
-            border-radius: var(--tdp-radius);
-            padding: 32px 28px;
-            box-shadow: var(--tdp-shadow);
-            transition: all 0.3s;
-            border: 1px solid #e2e8f0;
+        .benefit-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 28px 24px;
+            border: 1px solid #eee;
+            transition: all 0.25s;
         }
-        .tdp-benefit-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--tdp-shadow-lg);
-            border-color: var(--tdp-blue);
+        .benefit-card:hover {
+            border-color: #00a4e4;
+            box-shadow: 0 4px 16px rgba(0,164,228,0.1);
         }
-        .tdp-benefit-icon {
-            width: 52px;
-            height: 52px;
-            background: var(--tdp-blue-light);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--tdp-blue);
-            margin-bottom: 20px;
-        }
-        .tdp-benefit-icon svg { width: 26px; height: 26px; }
-        .tdp-benefit-icon--green {
-            background: var(--tdp-green-light);
-            color: var(--tdp-green);
-        }
-        .tdp-benefit-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--tdp-dark);
-        }
-        .tdp-benefit-text {
-            font-size: 14px;
-            color: var(--tdp-gray);
-            line-height: 1.65;
-        }
-        .tdp-benefit-stat {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 14px;
-            padding: 6px 12px;
-            background: var(--tdp-green-light);
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--tdp-green);
-        }
-
-        /* ===== PRODUCTS CATALOG ===== */
-        .tdp-products-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-        .tdp-product-card {
-            background: var(--tdp-white);
-            border-radius: var(--tdp-radius);
-            padding: 32px;
-            box-shadow: var(--tdp-shadow);
-            border: 1px solid #e2e8f0;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s;
-        }
-        .tdp-product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--tdp-shadow-lg);
-            border-color: var(--tdp-blue);
-        }
-        .tdp-product-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-        .tdp-product-icon {
+        .benefit-icon {
             width: 48px;
             height: 48px;
-            background: var(--tdp-blue-bg);
-            border-radius: 12px;
+            background: #f0f7ff;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--tdp-blue);
+            color: #00a4e4;
+            margin-bottom: 16px;
         }
-        .tdp-product-icon svg { width: 24px; height: 24px; }
-        .tdp-product-tag {
-            padding: 4px 12px;
-            background: var(--tdp-blue-light);
-            color: var(--tdp-blue);
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-        }
-        .tdp-product-name {
-            font-size: 22px;
+        .benefit-icon svg { width: 24px; height: 24px; }
+        .benefit-icon--green { background: #ecfdf5; color: #059669; }
+        .benefit-title {
+            font-size: 16px;
             font-weight: 700;
-            color: var(--tdp-dark);
-            margin-bottom: 4px;
+            margin-bottom: 8px;
+            color: #1a1a1a;
         }
-        .tdp-product-subtitle {
+        .benefit-text {
             font-size: 14px;
-            color: var(--tdp-blue);
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
-        .tdp-product-desc {
-            font-size: 14px;
-            color: var(--tdp-gray);
+            color: #777;
             line-height: 1.65;
-            margin-bottom: 20px;
-            flex: 1;
         }
-        .tdp-product-specs {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        .tdp-product-spec {
-            padding: 5px 12px;
-            background: var(--tdp-bg);
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--tdp-gray);
-        }
-        .tdp-product-link {
+        .benefit-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: var(--tdp-blue);
-            font-weight: 600;
-            font-size: 14px;
-            transition: gap 0.2s;
+            gap: 5px;
+            margin-top: 12px;
+            padding: 5px 10px;
+            background: #ecfdf5;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #059669;
         }
-        .tdp-product-link:hover { gap: 12px; color: var(--tdp-blue-hover); }
-        .tdp-product-link svg { width: 18px; height: 18px; }
+        .benefit-badge svg { width: 12px; height: 12px; }
 
-        /* ===== HOW IT WORKS ===== */
-        .tdp-how-grid {
+        /* ===== PRODUCTS CATALOG ===== */
+        .products-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
+            gap: 20px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            overflow: hidden;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            border-color: #00a4e4;
+            box-shadow: 0 4px 16px rgba(0,164,228,0.1);
+            transform: translateY(-2px);
+        }
+        .product-card-img {
+            aspect-ratio: 1/1;
+            background: #f7f7f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card-img svg {
+            width: 64px;
+            height: 64px;
+            color: #ccc;
+        }
+        .product-card-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 10px;
+            background: #00a4e4;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+        .product-card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card-cat {
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .product-card-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .product-card-desc {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+        .product-card-specs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .product-card-spec {
+            padding: 3px 8px;
+            background: #f7f7f7;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #777;
+        }
+        .product-card-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 12px;
+            background: #00a4e4;
+            color: #fff;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.2s;
+            font-family: 'Manrope', sans-serif;
+        }
+        .product-card-btn:hover {
+            background: #0090cc;
+            color: #fff;
+        }
+        .product-card-btn svg { width: 16px; height: 16px; }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
             counter-reset: step;
         }
-        .tdp-how-step { text-align: center; position: relative; }
-        .tdp-how-step::before {
+        .how-step {
+            text-align: center;
+            position: relative;
+        }
+        .how-step::before {
             counter-increment: step;
             content: counter(step);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 48px;
-            height: 48px;
-            background: var(--tdp-blue);
+            width: 44px;
+            height: 44px;
+            background: #00a4e4;
             color: #fff;
             border-radius: 50%;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
-            margin: 0 auto 16px;
+            margin: 0 auto 14px;
         }
-        .tdp-how-title {
-            font-size: 16px;
+        .how-step-title {
+            font-size: 15px;
             font-weight: 700;
             margin-bottom: 8px;
-            color: var(--tdp-dark);
+            color: #1a1a1a;
         }
-        .tdp-how-text { font-size: 13px; color: var(--tdp-gray); line-height: 1.6; }
+        .how-step-text {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+        }
 
         /* ===== COMPARISON TABLE ===== */
-        .tdp-compare-wrap { overflow-x: auto; }
-        .tdp-compare-table {
+        .compare-wrap { overflow-x: auto; }
+        .compare-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            border-radius: var(--tdp-radius);
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: var(--tdp-shadow);
+            border: 1px solid #eee;
             font-size: 14px;
         }
-        .tdp-compare-table thead {
-            background: linear-gradient(135deg, #0a1628, #1a2744);
-        }
-        .tdp-compare-table th {
-            padding: 16px 20px;
+        .compare-table thead { background: #1a1a1a; }
+        .compare-table th {
+            padding: 14px 20px;
             color: #fff;
             font-weight: 600;
             text-align: left;
             font-size: 14px;
         }
-        .tdp-compare-table th:first-child { width: 30%; }
-        .tdp-compare-table th.tdp-highlight {
+        .compare-table th:first-child { width: 30%; }
+        .compare-table th.hl {
             background: rgba(0,164,228,0.2);
             color: #7dd3fc;
         }
-        .tdp-compare-table td {
-            padding: 14px 20px;
-            border-bottom: 1px solid #e2e8f0;
-            color: var(--tdp-gray);
+        .compare-table td {
+            padding: 12px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #777;
         }
-        .tdp-compare-table tr:last-child td { border-bottom: none; }
-        .tdp-compare-table tbody tr {
-            background: var(--tdp-white);
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tbody tr {
+            background: #fff;
             transition: background 0.15s;
         }
-        .tdp-compare-table tbody tr:hover { background: var(--tdp-blue-bg); }
-        .tdp-compare-table td:first-child {
+        .compare-table tbody tr:hover { background: #f8fbff; }
+        .compare-table td:first-child {
             font-weight: 600;
-            color: var(--tdp-dark);
+            color: #333;
         }
-        .tdp-compare-table td.tdp-highlight {
-            background: rgba(0,164,228,0.04);
-            color: var(--tdp-dark);
+        .compare-table td.hl {
+            background: rgba(0,164,228,0.03);
+            color: #333;
             font-weight: 500;
         }
-        .tdp-compare-check { color: var(--tdp-green); font-weight: 700; }
-        .tdp-compare-cross { color: #cbd5e1; }
+        .check { color: #059669; font-weight: 700; }
+        .cross { color: #ccc; }
 
         /* ===== EVIDENCE ===== */
-        .tdp-evidence-grid {
+        .evidence-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 20px;
         }
-        .tdp-evidence-card {
-            background: var(--tdp-white);
-            border-radius: var(--tdp-radius);
-            padding: 32px;
+        .evidence-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 32px 24px;
             text-align: center;
-            box-shadow: var(--tdp-shadow);
-            border: 1px solid #e2e8f0;
+            border: 1px solid #eee;
         }
-        .tdp-evidence-number {
-            font-size: 48px;
+        .evidence-number {
+            font-size: 44px;
             font-weight: 800;
-            color: var(--tdp-blue);
+            color: #00a4e4;
             line-height: 1;
             margin-bottom: 8px;
         }
-        .tdp-evidence-label {
+        .evidence-label {
             font-size: 15px;
-            font-weight: 600;
-            color: var(--tdp-dark);
+            font-weight: 700;
+            color: #1a1a1a;
             margin-bottom: 8px;
         }
-        .tdp-evidence-source {
+        .evidence-source {
             font-size: 12px;
-            color: var(--tdp-gray-light);
+            color: #999;
             line-height: 1.5;
         }
 
         /* ===== FAQ ===== */
-        .tdp-faq-list { max-width: 800px; margin: 0 auto; }
-        .tdp-faq-item {
-            border: 1px solid #e2e8f0;
-            border-radius: var(--tdp-radius);
-            margin-bottom: 12px;
-            background: var(--tdp-white);
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            background: #fff;
             overflow: hidden;
             transition: border-color 0.2s;
         }
-        .tdp-faq-item:hover { border-color: var(--tdp-blue); }
-        .tdp-faq-q {
-            padding: 20px 24px;
-            font-size: 16px;
+        .faq-item:hover { border-color: #00a4e4; }
+        .faq-q {
+            padding: 18px 22px;
+            font-size: 15px;
             font-weight: 600;
-            color: var(--tdp-dark);
+            color: #1a1a1a;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -468,11 +594,11 @@
             gap: 16px;
             user-select: none;
         }
-        .tdp-faq-q::after {
+        .faq-q::after {
             content: '+';
-            font-size: 22px;
-            color: var(--tdp-blue);
-            font-weight: 300;
+            font-size: 20px;
+            color: #00a4e4;
+            font-weight: 400;
             flex-shrink: 0;
             width: 28px;
             height: 28px;
@@ -480,134 +606,155 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: var(--tdp-blue-light);
+            background: #f0f7ff;
             transition: transform 0.3s;
         }
-        .tdp-faq-item.open .tdp-faq-q::after {
+        .faq-item.open .faq-q::after {
             content: '\2212';
             transform: rotate(180deg);
         }
-        .tdp-faq-a {
-            padding: 0 24px;
+        .faq-a {
+            padding: 0 22px;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.35s ease, padding 0.35s ease;
         }
-        .tdp-faq-item.open .tdp-faq-a {
-            padding: 0 24px 20px;
+        .faq-item.open .faq-a {
+            padding: 0 22px 18px;
             max-height: 300px;
         }
-        .tdp-faq-a p {
+        .faq-a p {
             font-size: 14px;
-            color: var(--tdp-gray);
+            color: #777;
             line-height: 1.7;
             margin: 0;
         }
 
-        /* ===== CTA BOTTOM ===== */
-        .tdp-cta-section {
-            background: linear-gradient(135deg, #0a1628 0%, #1a2744 50%, #0d2137 100%);
+        /* ===== CTA ===== */
+        .cta-section {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e3f1fd 100%);
             padding: 70px 0;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
-        .tdp-cta-section::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            right: 10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0,164,228,0.12) 0%, transparent 70%);
-            border-radius: 50%;
+        .cta-title {
+            font-size: 30px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin: 0 0 14px;
         }
-        .tdp-cta-content { position: relative; z-index: 1; }
-        .tdp-cta-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #fff;
-            margin: 0 0 16px;
-        }
-        .tdp-cta-desc {
-            font-size: 17px;
-            color: #94a3b8;
-            margin-bottom: 32px;
-            max-width: 550px;
+        .cta-desc {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 28px;
+            max-width: 520px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
         }
-        .tdp-cta-actions {
+        .cta-actions {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
         }
-
-        /* ===== BREADCRUMBS ===== */
-        .tdp-vsuzi-breadcrumbs {
-            padding: 16px 0;
-            font-size: 13px;
-            color: #94a3b8;
-            background: var(--tdp-bg);
-            border-bottom: 1px solid #e2e8f0;
+        .cta-phone {
+            display: block;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
         }
-        .tdp-vsuzi-breadcrumbs a {
-            color: var(--tdp-gray-light);
-            transition: color 0.2s;
-        }
-        .tdp-vsuzi-breadcrumbs a:hover { color: var(--tdp-blue); }
-        .tdp-vsuzi-breadcrumbs span.sep { margin: 0 8px; color: #cbd5e1; }
+        .cta-phone:hover { color: #00a4e4; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .tdp-hero-h1 { font-size: 36px; }
-            .tdp-benefits-grid { grid-template-columns: repeat(2, 1fr); }
+            .vsuzi-hero h1 { font-size: 34px; }
+            .vsuzi-hero-visual { flex: 0 0 300px; }
+            .hero-ivus-visual { width: 280px; height: 280px; }
+            .hero-ivus-ring:nth-child(2) { inset: 22px; }
+            .hero-ivus-ring:nth-child(3) { inset: 44px; }
+            .hero-ivus-ring:nth-child(4) { inset: 66px; }
+            .hero-ivus-center { inset: 88px; font-size: 12px; }
+            .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
         }
+
         @media (max-width: 768px) {
-            .tdp-vsuzi-hero { padding: 50px 0 60px; }
-            .tdp-hero-h1 { font-size: 30px; }
-            .tdp-hero-desc { font-size: 16px; }
-            .tdp-hero-stats { flex-direction: column; gap: 20px; }
-            .tdp-hero-stat-value { font-size: 26px; }
-            .tdp-section { padding: 50px 0; }
-            .tdp-section-title { font-size: 26px; }
-            .tdp-benefits-grid { grid-template-columns: 1fr; }
-            .tdp-products-grid { grid-template-columns: 1fr; }
-            .tdp-how-grid { grid-template-columns: repeat(2, 1fr); }
-            .tdp-evidence-grid { grid-template-columns: 1fr; }
-            .tdp-cta-title { font-size: 26px; }
-            .tdp-hero-actions { flex-direction: column; }
-            .tdp-btn { justify-content: center; }
-            .fake-header { padding: 14px 20px; }
-            .fake-header nav { display: none; }
+            .site-header { padding: 0 20px; height: 64px; }
+            .site-header nav { display: none; }
+            .vsuzi-hero { padding: 40px 0 50px; }
+            .vsuzi-hero-inner { flex-direction: column; gap: 30px; }
+            .vsuzi-hero-visual { flex: none; }
+            .vsuzi-hero h1 { font-size: 28px; }
+            .hero-stats { flex-wrap: wrap; gap: 24px; }
+            .section { padding: 50px 0; }
+            .section-title { font-size: 24px; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: 1fr; }
+            .how-grid { grid-template-columns: repeat(2, 1fr); }
+            .evidence-grid { grid-template-columns: 1fr; }
+            .hero-actions { flex-direction: column; }
+            .btn { justify-content: center; width: 100%; }
         }
+
         @media (max-width: 480px) {
-            .tdp-how-grid { grid-template-columns: 1fr; }
-            .tdp-hero-h1 { font-size: 26px; }
-            .tdp-product-card { padding: 24px; }
+            .how-grid { grid-template-columns: 1fr; }
+            .vsuzi-hero h1 { font-size: 24px; }
+            .cta-title { font-size: 24px; }
+        }
+
+        /* ===== FAKE FOOTER ===== */
+        .site-footer {
+            background: #1a1a1a;
+            color: #999;
+            padding: 50px 40px 30px;
+            font-size: 13px;
+        }
+        .site-footer .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .site-footer h4 {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .site-footer a { color: #999; transition: color 0.2s; }
+        .site-footer a:hover { color: #00a4e4; }
+        .site-footer ul { list-style: none; line-height: 2; }
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
         }
     </style>
 </head>
 <body>
 
 <!-- Имитация шапки сайта -->
-<div class="fake-header">
-    <div class="logo">ТД «Пульс»</div>
+<div class="site-header">
+    <div class="logo">ТД <span>«Пульс»</span></div>
     <nav>
-        <span>Главная</span>
-        <span>Каталог</span>
-        <span>О компании</span>
-        <span>Контакты</span>
+        <a href="#">Каталог</a>
+        <a href="#">Производство</a>
+        <a href="#">Сервис</a>
+        <a href="#">Инфоцентр</a>
+        <a href="#">О нас</a>
+        <a href="#">Контакты</a>
     </nav>
+    <div class="header-phone">+7 (863) 310-08-07</div>
 </div>
 
-<div class="tdp-vsuzi">
+<div class="vsuzi-hub">
 
     <!-- Breadcrumbs -->
-    <div class="tdp-vsuzi-breadcrumbs">
-        <div class="tdp-container">
+    <div class="breadcrumbs">
+        <div class="container">
             <a href="#">Главная</a>
             <span class="sep">/</span>
             <a href="#">Интервенционная рентгенология</a>
@@ -617,46 +764,60 @@
     </div>
 
     <!-- HERO -->
-    <section class="tdp-vsuzi-hero">
-        <div class="tdp-container">
-            <div class="tdp-hero-content">
-                <div class="tdp-hero-badge">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                    Philips Volcano — официальный партнёр
+    <section class="vsuzi-hero">
+        <div class="container">
+            <div class="vsuzi-hero-inner">
+                <div class="vsuzi-hero-text">
+                    <div class="hero-partner">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        Официальный партнёр Philips
+                    </div>
+
+                    <h1>
+                        ВСУЗИ оборудование<br>
+                        <span>Philips Volcano</span>
+                    </h1>
+
+                    <p class="hero-desc">
+                        Внутрисосудистый ультразвук для интервенционной кардиологии. Катетеры Eagle&nbsp;Eye&nbsp;Platinum и платформы IntraSight — визуализация коронарных артерий для оптимизации стентирования.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#" class="btn btn-primary" onclick="return false;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Получить КП
+                        </a>
+                        <a href="#catalog" class="btn btn-outline">
+                            Смотреть каталог
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div>
+                            <div class="hero-stat-value">-33<span>%</span></div>
+                            <div class="hero-stat-label">снижение смертности<br>после ЧКВ с ВСУЗИ</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-value">-34<span>%</span></div>
+                            <div class="hero-stat-label">меньше осложнений<br>в первый год</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-value">&#8470;1</div>
+                            <div class="hero-stat-label">IVUS-катетер в мире<br>по выбору врачей</div>
+                        </div>
+                    </div>
                 </div>
 
-                <h1 class="tdp-hero-h1">
-                    ВСУЗИ оборудование<br>
-                    <span>Philips Volcano</span>
-                </h1>
-
-                <p class="tdp-hero-desc">
-                    Внутрисосудистый ультразвук для интервенционной кардиологии. Катетеры Eagle&nbsp;Eye&nbsp;Platinum и платформы IntraSight — точная визуализация коронарных артерий для оптимизации стентирования и снижения осложнений.
-                </p>
-
-                <div class="tdp-hero-actions">
-                    <a href="#" class="tdp-btn tdp-btn-primary">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        Получить коммерческое предложение
-                    </a>
-                    <a href="#catalog" class="tdp-btn tdp-btn-outline">
-                        Смотреть каталог
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                    </a>
-                </div>
-
-                <div class="tdp-hero-stats">
-                    <div>
-                        <div class="tdp-hero-stat-value">-33<span>%</span></div>
-                        <div class="tdp-hero-stat-label">снижение смертности<br>после ЧКВ с ВСУЗИ</div>
-                    </div>
-                    <div>
-                        <div class="tdp-hero-stat-value">-34<span>%</span></div>
-                        <div class="tdp-hero-stat-label">меньше осложнений<br>в первый год</div>
-                    </div>
-                    <div>
-                        <div class="tdp-hero-stat-value">&#8470;1</div>
-                        <div class="tdp-hero-stat-label">IVUS-катетер<br>в мире по выбору врачей</div>
+                <div class="vsuzi-hero-visual">
+                    <div class="hero-ivus-visual">
+                        <div class="hero-ivus-ring"></div>
+                        <div class="hero-ivus-ring"></div>
+                        <div class="hero-ivus-ring"></div>
+                        <div class="hero-ivus-ring"></div>
+                        <div class="hero-ivus-center">
+                            IVUS<br>360°
+                        </div>
                     </div>
                 </div>
             </div>
@@ -664,274 +825,258 @@
     </section>
 
     <!-- WHY IVUS -->
-    <section class="tdp-section tdp-section-alt">
-        <div class="tdp-container">
-            <div class="tdp-section-center">
-                <h2 class="tdp-section-title">Почему ВСУЗИ меняет результаты ЧКВ</h2>
-                <p class="tdp-section-subtitle">Внутрисосудистый ультразвук видит то, что скрыто от ангиографии — структуру стенки сосуда, состав бляшки и точный размер артерии</p>
+    <section class="section section-gray">
+        <div class="container">
+            <div class="section-center">
+                <h2 class="section-title">Почему ВСУЗИ меняет результаты ЧКВ</h2>
+                <p class="section-subtitle">Внутрисосудистый ультразвук видит то, что скрыто от ангиографии — структуру стенки сосуда, состав бляшки и точный размер артерии</p>
             </div>
 
-            <div class="tdp-benefits-grid">
-                <div class="tdp-benefit-card">
-                    <div class="tdp-benefit-icon">
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
                     </div>
-                    <div class="tdp-benefit-title">Точная визуализация</div>
-                    <div class="tdp-benefit-text">
-                        ВСУЗИ показывает поперечное сечение артерии в реальном времени — размер сосуда, состав атеросклеротической бляшки, степень стеноза. Ангиография даёт лишь силуэт.
-                    </div>
+                    <div class="benefit-title">Точная визуализация</div>
+                    <div class="benefit-text">ВСУЗИ показывает поперечное сечение артерии в реальном времени — размер сосуда, состав бляшки, степень стеноза. Ангиография даёт лишь силуэт.</div>
                 </div>
 
-                <div class="tdp-benefit-card">
-                    <div class="tdp-benefit-icon tdp-benefit-icon--green">
+                <div class="benefit-card">
+                    <div class="benefit-icon benefit-icon--green">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                     </div>
-                    <div class="tdp-benefit-title">Оптимальный подбор стента</div>
-                    <div class="tdp-benefit-text">
-                        Точное измерение диаметра и длины поражения позволяет выбрать стент идеального размера. Исключает недораскрытие и малапозицию.
-                    </div>
-                    <div class="tdp-benefit-stat">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <div class="benefit-title">Оптимальный подбор стента</div>
+                    <div class="benefit-text">Точное измерение диаметра и длины поражения позволяет выбрать стент идеального размера. Исключает недораскрытие и малапозицию.</div>
+                    <div class="benefit-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                         -38% инфаркт миокарда
                     </div>
                 </div>
 
-                <div class="tdp-benefit-card">
-                    <div class="tdp-benefit-icon">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
                     </div>
-                    <div class="tdp-benefit-title">Доказанное снижение смертности</div>
-                    <div class="tdp-benefit-text">
-                        Мета-анализы показывают: применение ВСУЗИ при стентировании снижает сердечно-сосудистую смертность на 33% и осложнения на 34% в первый год.
-                    </div>
-                    <div class="tdp-benefit-stat">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <div class="benefit-title">Снижение смертности на 33%</div>
+                    <div class="benefit-text">Мета-анализы показывают: применение ВСУЗИ при стентировании снижает сердечно-сосудистую смертность и осложнения в первый год.</div>
+                    <div class="benefit-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                         -33% смертность
                     </div>
                 </div>
 
-                <div class="tdp-benefit-card">
-                    <div class="tdp-benefit-icon tdp-benefit-icon--green">
+                <div class="benefit-card">
+                    <div class="benefit-icon benefit-icon--green">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
-                    <div class="tdp-benefit-title">Без очистки от крови</div>
-                    <div class="tdp-benefit-text">
-                        В отличие от ОКТ, ВСУЗИ не требует введения контраста для вытеснения крови. Исследование проводится без прерывания кровотока.
-                    </div>
+                    <div class="benefit-title">Без очистки от крови</div>
+                    <div class="benefit-text">В отличие от ОКТ, ВСУЗИ не требует введения контраста для вытеснения крови. Исследование проводится без прерывания кровотока.</div>
                 </div>
 
-                <div class="tdp-benefit-card">
-                    <div class="tdp-benefit-icon">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
                     </div>
-                    <div class="tdp-benefit-title">Интеграция SyncVision</div>
-                    <div class="tdp-benefit-text">
-                        Корегистрация ВСУЗИ-изображений с ангиограммой в реальном времени. Точная навигация и принятие решений во время процедуры.
-                    </div>
+                    <div class="benefit-title">Интеграция SyncVision</div>
+                    <div class="benefit-text">Корегистрация ВСУЗИ-изображений с ангиограммой в реальном времени. Точная навигация и принятие решений во время процедуры.</div>
                 </div>
 
-                <div class="tdp-benefit-card">
-                    <div class="tdp-benefit-icon tdp-benefit-icon--green">
+                <div class="benefit-card">
+                    <div class="benefit-icon benefit-icon--green">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <div class="tdp-benefit-title">Глубокое проникновение</div>
-                    <div class="tdp-benefit-text">
-                        Ультразвук проникает на глубину до 10 мм, визуализируя все слои стенки сосуда — интиму, медию, адвентицию. ОКТ — только 1-2 мм.
-                    </div>
+                    <div class="benefit-title">Глубокое проникновение</div>
+                    <div class="benefit-text">Ультразвук проникает на глубину до 10 мм, визуализируя все слои стенки сосуда — интиму, медию, адвентицию. ОКТ — только 1-2 мм.</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- PRODUCTS CATALOG -->
-    <section class="tdp-section" id="catalog">
-        <div class="tdp-container">
-            <div class="tdp-section-center">
-                <h2 class="tdp-section-title">Каталог ВСУЗИ оборудования</h2>
-                <p class="tdp-section-subtitle">Полная линейка Philips Volcano для внутрисосудистой визуализации — катетеры и платформы</p>
+    <section class="section" id="catalog">
+        <div class="container">
+            <div class="section-center">
+                <h2 class="section-title">Каталог ВСУЗИ оборудования</h2>
+                <p class="section-subtitle">Полная линейка Philips Volcano для внутрисосудистой визуализации</p>
             </div>
 
-            <div class="tdp-products-grid">
+            <div class="products-grid">
                 <!-- Eagle Eye Platinum -->
-                <div class="tdp-product-card">
-                    <div class="tdp-product-header">
-                        <div class="tdp-product-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <div class="product-card">
+                    <div class="product-card-img">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <div class="product-card-tag">Бестселлер</div>
+                    </div>
+                    <div class="product-card-body">
+                        <div class="product-card-cat">Катетеры ВСУЗИ</div>
+                        <div class="product-card-name">Eagle Eye Platinum</div>
+                        <div class="product-card-desc">Цифровой IVUS-катетер №1 в мире. Plug-and-play, 20 МГц, совместимость с 5F катетерами.</div>
+                        <div class="product-card-specs">
+                            <span class="product-card-spec">20 МГц</span>
+                            <span class="product-card-spec">Цифровой</span>
+                            <span class="product-card-spec">3.5F</span>
                         </div>
-                        <div class="tdp-product-tag">Бестселлер</div>
+                        <a href="#" class="product-card-btn">
+                            Получить КП
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
                     </div>
-                    <div class="tdp-product-name">Eagle Eye Platinum</div>
-                    <div class="tdp-product-subtitle">Цифровой IVUS-катетер №1 в мире</div>
-                    <div class="tdp-product-desc">Plug-and-play технология, частота 20 МГц, совместимость с 5F катетерами. Гидрофильное покрытие GlyDx, 3 рентгеноконтрастных маркера.</div>
-                    <div class="tdp-product-specs">
-                        <span class="tdp-product-spec">20 МГц</span>
-                        <span class="tdp-product-spec">Цифровой</span>
-                        <span class="tdp-product-spec">3.5F</span>
-                        <span class="tdp-product-spec">0.014"</span>
-                    </div>
-                    <a href="#" class="tdp-product-link">
-                        Подробнее
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
                 </div>
 
                 <!-- Eagle Eye Platinum ST -->
-                <div class="tdp-product-card">
-                    <div class="tdp-product-header">
-                        <div class="tdp-product-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+                <div class="product-card">
+                    <div class="product-card-img">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+                        <div class="product-card-tag">Short Tip</div>
+                    </div>
+                    <div class="product-card-body">
+                        <div class="product-card-cat">Катетеры ВСУЗИ</div>
+                        <div class="product-card-name">Eagle Eye Platinum ST</div>
+                        <div class="product-card-desc">Короткий кончик 2,5 мм для дистальных поражений коронарных артерий.</div>
+                        <div class="product-card-specs">
+                            <span class="product-card-spec">20 МГц</span>
+                            <span class="product-card-spec">Short Tip</span>
+                            <span class="product-card-spec">3.5F</span>
                         </div>
-                        <div class="tdp-product-tag">Short Tip</div>
+                        <a href="#" class="product-card-btn">
+                            Получить КП
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
                     </div>
-                    <div class="tdp-product-name">Eagle Eye Platinum ST</div>
-                    <div class="tdp-product-subtitle">Короткий кончик для дистальных поражений</div>
-                    <div class="tdp-product-desc">Расстояние кончик-датчик всего 2,5 мм. Визуализация дистальных участков коронарных артерий, недоступных стандартным катетерам.</div>
-                    <div class="tdp-product-specs">
-                        <span class="tdp-product-spec">20 МГц</span>
-                        <span class="tdp-product-spec">Short Tip</span>
-                        <span class="tdp-product-spec">3.5F</span>
-                        <span class="tdp-product-spec">5F совм.</span>
-                    </div>
-                    <a href="#" class="tdp-product-link">
-                        Подробнее
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
                 </div>
 
                 <!-- IntraSight Mobile -->
-                <div class="tdp-product-card">
-                    <div class="tdp-product-header">
-                        <div class="tdp-product-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                <div class="product-card">
+                    <div class="product-card-img">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                        <div class="product-card-tag">Платформа</div>
+                    </div>
+                    <div class="product-card-body">
+                        <div class="product-card-cat">Платформы</div>
+                        <div class="product-card-name">Philips IntraSight Mobile</div>
+                        <div class="product-card-desc">Мобильная платформа ВСУЗИ + FFR/iFR. Сочетает визуализацию и оценку физиологии.</div>
+                        <div class="product-card-specs">
+                            <span class="product-card-spec">IVUS + FFR</span>
+                            <span class="product-card-spec">SyncVision</span>
+                            <span class="product-card-spec">Мобильная</span>
                         </div>
-                        <div class="tdp-product-tag">Платформа</div>
+                        <a href="#" class="product-card-btn">
+                            Получить КП
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
                     </div>
-                    <div class="tdp-product-name">Philips IntraSight Mobile</div>
-                    <div class="tdp-product-subtitle">Мобильная платформа ВСУЗИ + FFR/iFR</div>
-                    <div class="tdp-product-desc">Интервенционная платформа нового поколения. Сочетает внутрисосудистый ультразвук и оценку физиологии коронарных артерий в одной системе.</div>
-                    <div class="tdp-product-specs">
-                        <span class="tdp-product-spec">IVUS + FFR</span>
-                        <span class="tdp-product-spec">SyncVision</span>
-                        <span class="tdp-product-spec">Мобильная</span>
-                        <span class="tdp-product-spec">Azurion</span>
-                    </div>
-                    <a href="#" class="tdp-product-link">
-                        Подробнее
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
                 </div>
 
                 <!-- Core Mobile -->
-                <div class="tdp-product-card">
-                    <div class="tdp-product-header">
-                        <div class="tdp-product-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <div class="product-card">
+                    <div class="product-card-img">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        <div class="product-card-tag">Система</div>
+                    </div>
+                    <div class="product-card-body">
+                        <div class="product-card-cat">Платформы</div>
+                        <div class="product-card-name">Volcano Core Mobile</div>
+                        <div class="product-card-desc">Система высокоточной визуализации и анализа физиологических параметров для ЧКВ.</div>
+                        <div class="product-card-specs">
+                            <span class="product-card-spec">IVUS + Физ.</span>
+                            <span class="product-card-spec">Мобильная</span>
+                            <span class="product-card-spec">Мультимод.</span>
                         </div>
-                        <div class="tdp-product-tag">Система</div>
+                        <a href="#" class="product-card-btn">
+                            Получить КП
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
                     </div>
-                    <div class="tdp-product-name">Volcano Core Mobile</div>
-                    <div class="tdp-product-subtitle">Система высокоточной визуализации</div>
-                    <div class="tdp-product-desc">Мобильная система, объединяющая методы визуализации и анализа физиологических параметров для принятия решений при ЧКВ.</div>
-                    <div class="tdp-product-specs">
-                        <span class="tdp-product-spec">IVUS + Физ.</span>
-                        <span class="tdp-product-spec">Мобильная</span>
-                        <span class="tdp-product-spec">Мультимод.</span>
-                        <span class="tdp-product-spec">ЧКВ</span>
-                    </div>
-                    <a href="#" class="tdp-product-link">
-                        Подробнее
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- HOW IT WORKS -->
-    <section class="tdp-section tdp-section-alt">
-        <div class="tdp-container">
-            <div class="tdp-section-center">
-                <h2 class="tdp-section-title">Как работает ВСУЗИ</h2>
-                <p class="tdp-section-subtitle">Внутрисосудистый ультразвук — 4 шага к точной диагностике</p>
+    <section class="section section-gray">
+        <div class="container">
+            <div class="section-center">
+                <h2 class="section-title">Как работает ВСУЗИ</h2>
+                <p class="section-subtitle">Внутрисосудистый ультразвук — 4 шага к точной диагностике</p>
             </div>
 
-            <div class="tdp-how-grid">
-                <div class="tdp-how-step">
-                    <div class="tdp-how-title">Доступ</div>
-                    <div class="tdp-how-text">Катетер вводится через направляющий катетер в коронарную артерию по стандартному проводнику 0.014"</div>
+            <div class="how-grid">
+                <div class="how-step">
+                    <div class="how-step-title">Доступ</div>
+                    <div class="how-step-text">Катетер вводится через направляющий катетер в коронарную артерию по стандартному проводнику 0.014"</div>
                 </div>
-                <div class="tdp-how-step">
-                    <div class="tdp-how-title">Визуализация</div>
-                    <div class="tdp-how-text">Миниатюрный датчик на кончике катетера создаёт 360° ультразвуковое изображение стенки сосуда изнутри</div>
+                <div class="how-step">
+                    <div class="how-step-title">Визуализация</div>
+                    <div class="how-step-text">Миниатюрный датчик создаёт 360° ультразвуковое изображение стенки сосуда изнутри</div>
                 </div>
-                <div class="tdp-how-step">
-                    <div class="tdp-how-title">Анализ</div>
-                    <div class="tdp-how-text">Автоматическое измерение диаметра, площади просвета, объёма бляшки. Корегистрация с ангиограммой (SyncVision)</div>
+                <div class="how-step">
+                    <div class="how-step-title">Анализ</div>
+                    <div class="how-step-text">Автоматическое измерение диаметра, площади просвета, объёма бляшки. Корегистрация с ангиограммой</div>
                 </div>
-                <div class="tdp-how-step">
-                    <div class="tdp-how-title">Оптимизация</div>
-                    <div class="tdp-how-text">Точный подбор размера стента, контроль раскрытия и прилегания. Оценка результата вмешательства в реальном времени</div>
+                <div class="how-step">
+                    <div class="how-step-title">Оптимизация</div>
+                    <div class="how-step-text">Точный подбор размера стента, контроль раскрытия и прилегания. Оценка результата в реальном времени</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- IVUS vs OCT -->
-    <section class="tdp-section">
-        <div class="tdp-container">
-            <div class="tdp-section-center">
-                <h2 class="tdp-section-title">ВСУЗИ vs ОКТ: сравнение технологий</h2>
-                <p class="tdp-section-subtitle">Оба метода дополняют друг друга, но ВСУЗИ имеет наибольшую доказательную базу для оптимизации стентирования</p>
+    <!-- COMPARISON TABLE -->
+    <section class="section">
+        <div class="container">
+            <div class="section-center">
+                <h2 class="section-title">ВСУЗИ vs ОКТ: сравнение технологий</h2>
+                <p class="section-subtitle">Оба метода дополняют друг друга, но ВСУЗИ имеет наибольшую доказательную базу для оптимизации стентирования</p>
             </div>
 
-            <div class="tdp-compare-wrap">
-                <table class="tdp-compare-table">
+            <div class="compare-wrap">
+                <table class="compare-table">
                     <thead>
                         <tr>
                             <th>Параметр</th>
-                            <th class="tdp-highlight">ВСУЗИ</th>
+                            <th class="hl">ВСУЗИ</th>
                             <th>ОКТ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Глубина проникновения</td>
-                            <td class="tdp-highlight"><strong>до 10 мм</strong></td>
+                            <td class="hl"><strong>до 10 мм</strong></td>
                             <td>1-2 мм</td>
                         </tr>
                         <tr>
                             <td>Разрешение</td>
-                            <td class="tdp-highlight">100-150 мкм</td>
+                            <td class="hl">100-150 мкм</td>
                             <td><strong>10-20 мкм</strong></td>
                         </tr>
                         <tr>
                             <td>Очистка от крови</td>
-                            <td class="tdp-highlight"><span class="tdp-compare-check">Не требуется</span></td>
-                            <td><span class="tdp-compare-cross">Требуется (контраст)</span></td>
+                            <td class="hl"><span class="check">Не требуется</span></td>
+                            <td><span class="cross">Требуется (контраст)</span></td>
                         </tr>
                         <tr>
-                            <td>Визуализация всех слоёв стенки</td>
-                            <td class="tdp-highlight"><span class="tdp-compare-check">Да</span></td>
-                            <td><span class="tdp-compare-cross">Частично</span></td>
+                            <td>Визуализация слоёв стенки</td>
+                            <td class="hl"><span class="check">Все слои</span></td>
+                            <td><span class="cross">Частично</span></td>
                         </tr>
                         <tr>
                             <td>Оценка размера сосуда</td>
-                            <td class="tdp-highlight"><span class="tdp-compare-check">Точная (EEM)</span></td>
-                            <td>Ограничена проникновением</td>
+                            <td class="hl"><span class="check">Точная (EEM)</span></td>
+                            <td>Ограничена</td>
                         </tr>
                         <tr>
                             <td>Детализация поверхности стента</td>
-                            <td class="tdp-highlight">Базовая</td>
-                            <td><span class="tdp-compare-check"><strong>Высокая</strong></span></td>
+                            <td class="hl">Базовая</td>
+                            <td><span class="check"><strong>Высокая</strong></span></td>
                         </tr>
                         <tr>
-                            <td>Снижение смертности (мета-анализ)</td>
-                            <td class="tdp-highlight"><span class="tdp-compare-check"><strong>-33%</strong></span></td>
+                            <td>Снижение смертности</td>
+                            <td class="hl"><span class="check"><strong>-33%</strong></span></td>
                             <td>Данные накапливаются</td>
                         </tr>
                         <tr>
-                            <td>Класс рекомендаций ESC</td>
-                            <td class="tdp-highlight"><strong>IIa</strong></td>
+                            <td>Рекомендации ESC</td>
+                            <td class="hl"><strong>IIa</strong></td>
                             <td>IIa</td>
                         </tr>
                     </tbody>
@@ -941,101 +1086,147 @@
     </section>
 
     <!-- CLINICAL EVIDENCE -->
-    <section class="tdp-section tdp-section-alt">
-        <div class="tdp-container">
-            <div class="tdp-section-center">
-                <h2 class="tdp-section-title">Клинические доказательства</h2>
-                <p class="tdp-section-subtitle">ВСУЗИ — одна из наиболее изученных технологий в интервенционной кардиологии</p>
+    <section class="section section-gray">
+        <div class="container">
+            <div class="section-center">
+                <h2 class="section-title">Клинические доказательства</h2>
+                <p class="section-subtitle">ВСУЗИ — одна из наиболее изученных технологий в интервенционной кардиологии</p>
             </div>
 
-            <div class="tdp-evidence-grid">
-                <div class="tdp-evidence-card">
-                    <div class="tdp-evidence-number">-33%</div>
-                    <div class="tdp-evidence-label">Сердечно-сосудистая смертность</div>
-                    <div class="tdp-evidence-source">Мета-анализ рандомизированных исследований, 2023. ВСУЗИ-контроль vs ангиографический контроль ЧКВ.</div>
+            <div class="evidence-grid">
+                <div class="evidence-card">
+                    <div class="evidence-number">-33%</div>
+                    <div class="evidence-label">Сердечно-сосудистая смертность</div>
+                    <div class="evidence-source">Мета-анализ рандомизированных исследований, 2023. ВСУЗИ-контроль vs ангиографический контроль ЧКВ.</div>
                 </div>
-                <div class="tdp-evidence-card">
-                    <div class="tdp-evidence-number">-38%</div>
-                    <div class="tdp-evidence-label">Инфаркт миокарда</div>
-                    <div class="tdp-evidence-source">Снижение частоты ИМ при стентировании под контролем ВСУЗИ в сравнении с ангиографическим контролем.</div>
+                <div class="evidence-card">
+                    <div class="evidence-number">-38%</div>
+                    <div class="evidence-label">Инфаркт миокарда</div>
+                    <div class="evidence-source">Снижение частоты ИМ при стентировании под контролем ВСУЗИ в сравнении с ангиографическим контролем.</div>
                 </div>
-                <div class="tdp-evidence-card">
-                    <div class="tdp-evidence-number">-34%</div>
-                    <div class="tdp-evidence-label">Повторная реваскуляризация</div>
-                    <div class="tdp-evidence-source">Снижение необходимости в повторных вмешательствах на целевом сосуде (TLR) в первый год после ЧКВ.</div>
+                <div class="evidence-card">
+                    <div class="evidence-number">-34%</div>
+                    <div class="evidence-label">Повторная реваскуляризация</div>
+                    <div class="evidence-source">Снижение повторных вмешательств на целевом сосуде (TLR) в первый год после ЧКВ.</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section class="tdp-section">
-        <div class="tdp-container">
-            <div class="tdp-section-center">
-                <h2 class="tdp-section-title">Частые вопросы</h2>
-                <p class="tdp-section-subtitle">Ответы на основные вопросы о ВСУЗИ оборудовании</p>
+    <section class="section">
+        <div class="container">
+            <div class="section-center">
+                <h2 class="section-title">Частые вопросы</h2>
+                <p class="section-subtitle">Ответы на основные вопросы о ВСУЗИ оборудовании</p>
             </div>
 
-            <div class="tdp-faq-list">
-                <div class="tdp-faq-item">
-                    <div class="tdp-faq-q">Что такое ВСУЗИ и для чего оно применяется?</div>
-                    <div class="tdp-faq-a"><p>ВСУЗИ (внутрисосудистое ультразвуковое исследование) — метод визуализации коронарных артерий изнутри с помощью миниатюрного ультразвукового датчика на кончике катетера. Применяется для точной оценки атеросклеротических поражений, оптимизации стентирования и контроля результатов ЧКВ (чрескожного коронарного вмешательства).</p></div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q">Что такое ВСУЗИ и для чего оно применяется?</div>
+                    <div class="faq-a"><p>ВСУЗИ (внутрисосудистое ультразвуковое исследование) — метод визуализации коронарных артерий изнутри с помощью миниатюрного ультразвукового датчика на кончике катетера. Применяется для точной оценки атеросклеротических поражений, оптимизации стентирования и контроля результатов ЧКВ.</p></div>
                 </div>
-                <div class="tdp-faq-item">
-                    <div class="tdp-faq-q">Чем ВСУЗИ отличается от обычной коронарографии?</div>
-                    <div class="tdp-faq-a"><p>Коронарография показывает только силуэт (люминограмму) сосуда, тогда как ВСУЗИ визуализирует стенку артерии в поперечном сечении — состав бляшки, степень стеноза, размер сосуда. Это позволяет точнее подобрать размер стента и оценить результат имплантации.</p></div>
+                <div class="faq-item">
+                    <div class="faq-q">Чем ВСУЗИ отличается от обычной коронарографии?</div>
+                    <div class="faq-a"><p>Коронарография показывает только силуэт (люминограмму) сосуда, тогда как ВСУЗИ визуализирует стенку артерии в поперечном сечении — состав бляшки, степень стеноза, размер сосуда. Это позволяет точнее подобрать размер стента и оценить результат имплантации.</p></div>
                 </div>
-                <div class="tdp-faq-item">
-                    <div class="tdp-faq-q">Какие ВСУЗИ-катетеры Philips Volcano вы предлагаете?</div>
-                    <div class="tdp-faq-a"><p>Мы поставляем полную линейку Philips Volcano для коронарного ВСУЗИ: цифровые катетеры Eagle Eye Platinum и Eagle Eye Platinum ST, а также платформы IntraSight и Core Mobile для визуализации и оценки физиологии.</p></div>
+                <div class="faq-item">
+                    <div class="faq-q">Какие ВСУЗИ-катетеры Philips Volcano вы предлагаете?</div>
+                    <div class="faq-a"><p>Мы поставляем полную линейку Philips Volcano для коронарного ВСУЗИ: цифровые катетеры Eagle Eye Platinum и Eagle Eye Platinum ST, а также платформы IntraSight и Core Mobile для визуализации и оценки физиологии.</p></div>
                 </div>
-                <div class="tdp-faq-item">
-                    <div class="tdp-faq-q">Сколько стоит оборудование ВСУЗИ?</div>
-                    <div class="tdp-faq-a"><p>Стоимость зависит от конфигурации: катетеры — расходный материал для каждой процедуры, платформы (IntraSight, Core Mobile) — стационарное оборудование для рентген-операционной. Запросите индивидуальное коммерческое предложение — мы подберём оптимальную конфигурацию для вашей клиники.</p></div>
+                <div class="faq-item">
+                    <div class="faq-q">Сколько стоит оборудование ВСУЗИ?</div>
+                    <div class="faq-a"><p>Стоимость зависит от конфигурации: катетеры — расходный материал для каждой процедуры, платформы (IntraSight, Core Mobile) — стационарное оборудование для рентген-операционной. Запросите индивидуальное коммерческое предложение — мы подберём оптимальную конфигурацию для вашей клиники.</p></div>
                 </div>
-                <div class="tdp-faq-item">
-                    <div class="tdp-faq-q">ВСУЗИ или ОКТ — что лучше?</div>
-                    <div class="tdp-faq-a"><p>Оба метода дополняют друг друга. ВСУЗИ обеспечивает глубокое проникновение ультразвука (до 10 мм) и не требует очистки сосуда от крови. ОКТ даёт более высокое разрешение (10 мкм vs 100 мкм). Для оценки размера сосуда и оптимизации стентирования ВСУЗИ имеет наибольшую доказательную базу.</p></div>
+                <div class="faq-item">
+                    <div class="faq-q">ВСУЗИ или ОКТ — что лучше?</div>
+                    <div class="faq-a"><p>Оба метода дополняют друг друга. ВСУЗИ обеспечивает глубокое проникновение ультразвука (до 10 мм) и не требует очистки сосуда от крови. ОКТ даёт более высокое разрешение (10 мкм vs 100 мкм). Для оценки размера сосуда и оптимизации стентирования ВСУЗИ имеет наибольшую доказательную базу.</p></div>
                 </div>
-                <div class="tdp-faq-item">
-                    <div class="tdp-faq-q">Как организовать поставку ВСУЗИ оборудования?</div>
-                    <div class="tdp-faq-a"><p>Оставьте заявку на сайте или свяжитесь с нами по телефону. Мы подготовим коммерческое предложение, организуем демонстрацию оборудования и обеспечим техническую поддержку и обучение персонала.</p></div>
+                <div class="faq-item">
+                    <div class="faq-q">Как организовать поставку ВСУЗИ оборудования?</div>
+                    <div class="faq-a"><p>Оставьте заявку на сайте или свяжитесь с нами по телефону. Мы подготовим коммерческое предложение, организуем демонстрацию оборудования и обеспечим техническую поддержку и обучение персонала.</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA BOTTOM -->
-    <section class="tdp-cta-section">
-        <div class="tdp-container">
-            <div class="tdp-cta-content">
-                <h2 class="tdp-cta-title">Готовы внедрить ВСУЗИ в вашей клинике?</h2>
-                <p class="tdp-cta-desc">
-                    Запросите индивидуальное коммерческое предложение — подберём оптимальную конфигурацию оборудования для вашей рентген-операционной.
-                </p>
-                <div class="tdp-cta-actions">
-                    <a href="#" class="tdp-btn tdp-btn-primary">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        Получить коммерческое предложение
-                    </a>
-                    <a href="tel:+74951234567" class="tdp-btn tdp-btn-outline">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-                        Позвонить нам
-                    </a>
-                </div>
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Готовы внедрить ВСУЗИ в вашей клинике?</h2>
+            <p class="cta-desc">
+                Запросите индивидуальное коммерческое предложение — подберём оптимальную конфигурацию оборудования для вашей рентген-операционной.
+            </p>
+            <div class="cta-actions">
+                <a href="#" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    Получить коммерческое предложение
+                </a>
+                <a href="tel:+78633100807" class="btn btn-dark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    Позвонить нам
+                </a>
             </div>
+            <a href="tel:+78633100807" class="cta-phone">+7 (863) 310-08-07</a>
         </div>
     </section>
 
 </div>
 
+<!-- Имитация подвала -->
+<div class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h4>Каталог</h4>
+                <ul>
+                    <li><a href="#">УЗИ аппараты</a></li>
+                    <li><a href="#">КТ</a></li>
+                    <li><a href="#">МРТ</a></li>
+                    <li><a href="#">Интервенционная рентгенология</a></li>
+                    <li><a href="#">Рентгенология</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Компания</h4>
+                <ul>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Производство</a></li>
+                    <li><a href="#">Сервис</a></li>
+                    <li><a href="#">Инфоцентр</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Партнёры</h4>
+                <ul>
+                    <li><a href="#">Philips</a></li>
+                    <li><a href="#">GE Healthcare</a></li>
+                    <li><a href="#">Siemens Healthineers</a></li>
+                    <li><a href="#">Mindray</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Контакты</h4>
+                <ul>
+                    <li>+7 (863) 310-08-07</li>
+                    <li><a href="#">sales@tdpuls.com</a></li>
+                    <li>г. Ростов-на-Дону</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 ТД «Пульс». Все права защищены.
+        </div>
+    </div>
+</div>
+
 <script>
 // FAQ accordion
-document.querySelectorAll('.tdp-faq-q').forEach(function(q) {
+document.querySelectorAll('.faq-q').forEach(function(q) {
     q.addEventListener('click', function() {
         var item = this.parentElement;
         var wasOpen = item.classList.contains('open');
-        document.querySelectorAll('.tdp-faq-item').forEach(function(i) {
+        document.querySelectorAll('.faq-item').forEach(function(i) {
             i.classList.remove('open');
         });
         if (!wasOpen) {

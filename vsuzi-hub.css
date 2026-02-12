@@ -1,0 +1,607 @@
+/* ================================================================
+   VSUZI HUB — в стиле tdpuls.com (Flatsome / Manrope / #00a4e4)
+   Все стили с префиксом .vsuzi-hub для изоляции от темы
+   ================================================================ */
+
+.vsuzi-hub {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+.vsuzi-hub * { box-sizing: border-box; }
+.vsuzi-hub a { text-decoration: none; color: inherit; }
+
+.vsuzi-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== BREADCRUMBS ===== */
+.vsuzi-breadcrumbs {
+    padding: 14px 0;
+    font-size: 13px;
+    color: #999;
+    background: #f7f7f7;
+    border-bottom: 1px solid #eee;
+}
+.vsuzi-breadcrumbs a { color: #777; transition: color 0.2s; }
+.vsuzi-breadcrumbs a:hover { color: #00a4e4; }
+.vsuzi-breadcrumbs .sep { margin: 0 8px; color: #ccc; }
+
+/* ===== HERO ===== */
+.vsuzi-hero {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 50%, #f5f9ff 100%);
+    padding: 60px 0 70px;
+    position: relative;
+    overflow: hidden;
+}
+.vsuzi-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -50px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,164,228,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+}
+.vsuzi-hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+    z-index: 1;
+}
+.vsuzi-hero-text { flex: 1; }
+.vsuzi-hero-visual {
+    flex: 0 0 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vsuzi-partner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,164,228,0.1);
+    border: 1px solid rgba(0,164,228,0.2);
+    color: #00a4e4;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.vsuzi-partner svg { width: 14px; height: 14px; }
+
+.vsuzi-hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.15;
+    margin: 0 0 18px;
+    letter-spacing: -0.5px;
+}
+.vsuzi-hero h1 span { color: #00a4e4; }
+
+.vsuzi-hero-desc {
+    font-size: 17px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 560px;
+}
+
+.vsuzi-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.vsuzi-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Manrope', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+.vsuzi-btn svg { width: 18px; height: 18px; }
+.vsuzi-btn--primary { background: #00a4e4; color: #fff; }
+.vsuzi-btn--primary:hover {
+    background: #0090cc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,164,228,0.3);
+    color: #fff;
+}
+.vsuzi-btn--dark { background: #1a1a1a; color: #fff; }
+.vsuzi-btn--dark:hover { background: #333; color: #fff; }
+.vsuzi-btn--outline {
+    background: #fff;
+    color: #333;
+    border: 1.5px solid #ddd;
+}
+.vsuzi-btn--outline:hover {
+    border-color: #00a4e4;
+    color: #00a4e4;
+}
+
+/* Hero stats */
+.vsuzi-hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+}
+.vsuzi-stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1;
+}
+.vsuzi-stat-value span { color: #00a4e4; }
+.vsuzi-stat-label {
+    font-size: 12px;
+    color: #999;
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+/* Hero visual */
+.vsuzi-ivus-visual {
+    width: 360px;
+    height: 360px;
+    position: relative;
+}
+.vsuzi-ivus-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid rgba(0,164,228,0.15);
+}
+.vsuzi-ivus-ring:nth-child(2) { inset: 30px; border-color: rgba(0,164,228,0.2); }
+.vsuzi-ivus-ring:nth-child(3) {
+    inset: 60px;
+    border-color: rgba(0,164,228,0.3);
+    animation: vsuzi-pulse 3s ease-in-out infinite;
+}
+.vsuzi-ivus-ring:nth-child(4) { inset: 90px; border-color: rgba(0,164,228,0.4); }
+.vsuzi-ivus-center {
+    position: absolute;
+    inset: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00a4e4, #0077b6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.3;
+    box-shadow: 0 8px 30px rgba(0,164,228,0.3);
+}
+@keyframes vsuzi-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.03); opacity: 0.7; }
+}
+
+/* ===== SECTIONS ===== */
+.vsuzi-section { padding: 70px 0; }
+.vsuzi-section--gray { background: #f7f7f7; }
+.vsuzi-section-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 10px;
+    line-height: 1.2;
+}
+.vsuzi-section-sub {
+    font-size: 15px;
+    color: #777;
+    margin-bottom: 40px;
+    max-width: 600px;
+}
+.vsuzi-center { text-align: center; }
+.vsuzi-center .vsuzi-section-sub { margin-left: auto; margin-right: auto; }
+
+/* ===== BENEFITS ===== */
+.vsuzi-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.vsuzi-benefit {
+    background: #fff;
+    border-radius: 10px;
+    padding: 28px 24px;
+    border: 1px solid #eee;
+    transition: all 0.25s;
+}
+.vsuzi-benefit:hover {
+    border-color: #00a4e4;
+    box-shadow: 0 4px 16px rgba(0,164,228,0.1);
+}
+.vsuzi-benefit-icon {
+    width: 48px;
+    height: 48px;
+    background: #f0f7ff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00a4e4;
+    margin-bottom: 16px;
+}
+.vsuzi-benefit-icon svg { width: 24px; height: 24px; }
+.vsuzi-benefit-icon--green { background: #ecfdf5; color: #059669; }
+.vsuzi-benefit h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #1a1a1a;
+}
+.vsuzi-benefit p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.65;
+    margin: 0;
+}
+.vsuzi-benefit-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 12px;
+    padding: 5px 10px;
+    background: #ecfdf5;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #059669;
+}
+.vsuzi-benefit-badge svg { width: 12px; height: 12px; }
+
+/* ===== PRODUCTS ===== */
+.vsuzi-products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.vsuzi-product {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    overflow: hidden;
+    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+}
+.vsuzi-product:hover {
+    border-color: #00a4e4;
+    box-shadow: 0 4px 16px rgba(0,164,228,0.1);
+    transform: translateY(-2px);
+}
+.vsuzi-product-img {
+    aspect-ratio: 1/1;
+    background: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.vsuzi-product-img svg { width: 64px; height: 64px; color: #ccc; }
+.vsuzi-product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 16px;
+}
+.vsuzi-product-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 4px 10px;
+    background: #00a4e4;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+.vsuzi-product-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.vsuzi-product-cat {
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+.vsuzi-product-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+.vsuzi-product-desc {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    flex: 1;
+}
+.vsuzi-product-specs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+.vsuzi-product-spec {
+    padding: 3px 8px;
+    background: #f7f7f7;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #777;
+}
+.vsuzi-product-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px;
+    background: #00a4e4;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s;
+    font-family: 'Manrope', sans-serif;
+}
+.vsuzi-product-btn:hover { background: #0090cc; color: #fff; }
+.vsuzi-product-btn svg { width: 16px; height: 16px; }
+
+/* ===== HOW IT WORKS ===== */
+.vsuzi-how {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    counter-reset: vsuzi-step;
+}
+.vsuzi-how-step { text-align: center; }
+.vsuzi-how-step::before {
+    counter-increment: vsuzi-step;
+    content: counter(vsuzi-step);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: #00a4e4;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 auto 14px;
+}
+.vsuzi-how-step h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #1a1a1a;
+}
+.vsuzi-how-step p {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ===== COMPARISON TABLE ===== */
+.vsuzi-compare-wrap { overflow-x: auto; }
+.vsuzi-compare {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    font-size: 14px;
+}
+.vsuzi-compare thead { background: #1a1a1a; }
+.vsuzi-compare th {
+    padding: 14px 20px;
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+}
+.vsuzi-compare th:first-child { width: 30%; }
+.vsuzi-compare th.vsuzi-hl { background: rgba(0,164,228,0.2); color: #7dd3fc; }
+.vsuzi-compare td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #777;
+}
+.vsuzi-compare tr:last-child td { border-bottom: none; }
+.vsuzi-compare tbody tr { background: #fff; transition: background 0.15s; }
+.vsuzi-compare tbody tr:hover { background: #f8fbff; }
+.vsuzi-compare td:first-child { font-weight: 600; color: #333; }
+.vsuzi-compare td.vsuzi-hl { background: rgba(0,164,228,0.03); color: #333; font-weight: 500; }
+.vsuzi-check { color: #059669; font-weight: 700; }
+.vsuzi-cross { color: #ccc; }
+
+/* ===== EVIDENCE ===== */
+.vsuzi-evidence {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.vsuzi-evidence-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 32px 24px;
+    text-align: center;
+    border: 1px solid #eee;
+}
+.vsuzi-evidence-num {
+    font-size: 44px;
+    font-weight: 800;
+    color: #00a4e4;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+.vsuzi-evidence-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+.vsuzi-evidence-src {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.5;
+}
+
+/* ===== FAQ ===== */
+.vsuzi-faq { max-width: 800px; margin: 0 auto; }
+.vsuzi-faq-item {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: #fff;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+.vsuzi-faq-item:hover { border-color: #00a4e4; }
+.vsuzi-faq-q {
+    padding: 18px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    user-select: none;
+}
+.vsuzi-faq-q::after {
+    content: '+';
+    font-size: 20px;
+    color: #00a4e4;
+    font-weight: 400;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f0f7ff;
+    transition: transform 0.3s;
+}
+.vsuzi-faq-item.open .vsuzi-faq-q::after {
+    content: '\2212';
+    transform: rotate(180deg);
+}
+.vsuzi-faq-a {
+    padding: 0 22px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+}
+.vsuzi-faq-item.open .vsuzi-faq-a {
+    padding: 0 22px 18px;
+    max-height: 300px;
+}
+.vsuzi-faq-a p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ===== CTA ===== */
+.vsuzi-cta {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e3f1fd 100%);
+    padding: 70px 0;
+    text-align: center;
+}
+.vsuzi-cta h2 {
+    font-size: 30px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 14px;
+}
+.vsuzi-cta-desc {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 28px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+.vsuzi-cta-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.vsuzi-cta-phone {
+    display: block;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+.vsuzi-cta-phone:hover { color: #00a4e4; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+    .vsuzi-products { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 1024px) {
+    .vsuzi-hero h1 { font-size: 34px; }
+    .vsuzi-hero-visual { flex: 0 0 300px; }
+    .vsuzi-ivus-visual { width: 280px; height: 280px; }
+    .vsuzi-ivus-ring:nth-child(2) { inset: 22px; }
+    .vsuzi-ivus-ring:nth-child(3) { inset: 44px; }
+    .vsuzi-ivus-ring:nth-child(4) { inset: 66px; }
+    .vsuzi-ivus-center { inset: 88px; font-size: 12px; }
+    .vsuzi-benefits { grid-template-columns: repeat(2, 1fr); }
+    .vsuzi-products { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .vsuzi-hero { padding: 40px 0 50px; }
+    .vsuzi-hero-inner { flex-direction: column; gap: 30px; }
+    .vsuzi-hero-visual { flex: none; }
+    .vsuzi-hero h1 { font-size: 28px; }
+    .vsuzi-hero-stats { flex-wrap: wrap; gap: 24px; }
+    .vsuzi-section { padding: 50px 0; }
+    .vsuzi-section-title { font-size: 24px; }
+    .vsuzi-benefits { grid-template-columns: 1fr; }
+    .vsuzi-products { grid-template-columns: 1fr; }
+    .vsuzi-how { grid-template-columns: repeat(2, 1fr); }
+    .vsuzi-evidence { grid-template-columns: 1fr; }
+    .vsuzi-hero-actions { flex-direction: column; }
+    .vsuzi-btn { justify-content: center; width: 100%; }
+}
+@media (max-width: 480px) {
+    .vsuzi-how { grid-template-columns: 1fr; }
+    .vsuzi-hero h1 { font-size: 24px; }
+    .vsuzi-cta h2 { font-size: 24px; }
+}
